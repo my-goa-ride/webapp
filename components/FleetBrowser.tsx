@@ -1,11 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
-import { BRAND, telHref, whatsappUrl } from "@/lib/brand";
-import { CARS, formatPrice, type Car } from "@/lib/cars";
-import { splitLast } from "@/lib/format";
+import { CARS, type Car } from "@/lib/cars";
 import BookingDialog from "./BookingDialog";
+import VehicleCard from "./VehicleCard";
 
 const TYPES = ["All", ...Array.from(new Set(CARS.map((c) => c.type)))];
 const GEARBOX = ["All", "Automatic", "Manual"];
@@ -23,16 +21,6 @@ function Chips({ label, options, value, onChange }: { label: string; options: st
         ))}
       </div>
     </div>
-  );
-}
-
-// "Mahindra Thar" -> Mahindra <em>Thar</em>, the design's headline treatment.
-function CarName({ name }: { name: string }) {
-  const [head, last] = splitLast(name);
-  return (
-    <>
-      {head} <em className="ital">{last}</em>
-    </>
   );
 }
 
@@ -118,42 +106,20 @@ export default function FleetBrowser({ initialQuery = "" }: { initialQuery?: str
         ) : (
           <ul className="fleet-grid">
             {cars.map((car, i) => (
-              <li key={car.id} className="car rv">
-                <div className="car-ph">
-                  <Image src={car.image} alt={car.name} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" priority={i < 3} />
-                </div>
-                <div className="car-meta label muted">
-                  <span>No. {String(CARS.indexOf(car) + 1).padStart(2, "0")}</span>
-                  <span>{car.type}</span>
-                </div>
-                <h3 className="display"><CarName name={car.name} /></h3>
-                <dl>
-                  <dt>Gearbox</dt><dd>{car.transmission}</dd>
-                  <dt>Seats</dt><dd>{car.seats}</dd>
-                  <dt>Fuel</dt><dd>{car.fuel}</dd>
-                </dl>
-                <p className="feat muted">{car.features.join(" · ")}</p>
-                <div className="car-foot">
-                  <p className="price">
-                    <span className="display">{formatPrice(car.pricePerDay)}</span> <span className="muted">/ day</span>
-                  </p>
-                  <button type="button" className="btn" onClick={() => setBooking(car)} aria-label={`Reserve the ${car.name}`}>
-                    Reserve
-                  </button>
-                </div>
-                <div className="car-links label">
-                  <a className="ul" href={whatsappUrl(`Hi ${BRAND.name}! I'd like to book the ${car.name}.`)} target="_blank" rel="noopener noreferrer" aria-label={`Ask about the ${car.name} on WhatsApp`}>
-                    WhatsApp
-                  </a>
-                  <a className="ul" href={telHref} aria-label={`Call to book the ${car.name}`}>Call</a>
-                </div>
-              </li>
+              <VehicleCard
+                key={car.id}
+                vehicle={car}
+                number={CARS.indexOf(car) + 1}
+                specs={[["Gearbox", car.transmission], ["Seats", car.seats], ["Fuel", car.fuel]]}
+                priority={i < 3}
+                onReserve={() => setBooking(car)}
+              />
             ))}
           </ul>
         )}
       </section>
 
-      <BookingDialog car={booking} onClose={() => setBooking(null)} />
+      <BookingDialog vehicle={booking} onClose={() => setBooking(null)} />
     </>
   );
 }

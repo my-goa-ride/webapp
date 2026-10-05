@@ -25,6 +25,7 @@ export default function SiteFooter() {
         <div>
           <span className="label">Explore</span>
           <Link className="ul" href="/cars">The Fleet</Link>
+          <Link className="ul" href="/bikes">Bikes</Link>
           <Link className="ul" href="/services">Services</Link>
           <Link className="ul" href="/blogs">Journal</Link>
           <Link className="ul" href="/about">About</Link>

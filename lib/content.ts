@@ -1,11 +1,12 @@
 // Page copy carried over from the reference rental site, with the brand name and
 // policy figures pulled from lib/brand.ts.
-import { BRAND, POLICY } from "./brand";
+import { BIKE_POLICY, BRAND, POLICY } from "./brand";
 
 const B = BRAND.name;
 
 export const NAV = [
   { label: "The Fleet", href: "/cars" },
+  { label: "Bikes", href: "/bikes" },
   { label: "Services", href: "/services" },
   { label: "Guidelines", href: "/guidelines" },
   { label: "Journal", href: "/blogs" },
@@ -154,6 +155,15 @@ export const RULES = [
     ],
   },
   {
+    title: "Riding a bike",
+    items: [
+      "The rider and any pillion must wear a helmet at all times, as the law requires.",
+      "One helmet comes free with every bike. Ask us if you need a second one for a pillion.",
+      "No more than two people on the bike.",
+      "No riding on the beach, on footpaths or against the traffic.",
+    ],
+  },
+  {
     title: "Who may drive",
     items: [
       "Only the person who signed the rental agreement may drive.",
@@ -163,7 +173,7 @@ export const RULES = [
 ];
 
 export const TIPS = [
-  { title: "Minimum age", text: `The primary driver must be at least ${POLICY.minAge} and hold a valid Indian driving licence. Goa's winding roads reward focus.` },
+  { title: "Minimum age", text: `The primary driver or rider must be at least ${POLICY.minAge} and hold a valid Indian driving licence for the vehicle: a four-wheeler licence for a car, a two-wheeler licence for a bike. Goa's winding roads reward focus.` },
   { title: "Checkpoints", text: `Tourists are often stopped at checkpoints. Carry your licence and keep the ${B} paperwork in the glovebox, and routine stops take a minute.` },
   { title: "Choosing the right car", text: "For the narrow lanes of North Goa, a nimble hatchback like the Swift is ideal. For larger groups heading south, choose one of the seven-seat SUVs." },
   { title: "If something goes wrong", text: `Don't attempt repairs yourself. For a flat tyre or a warning light, call the ${B} team and we will send help or a replacement car.` },
@@ -184,7 +194,7 @@ export const CANCELLATION = [
 ];
 
 export const TERMS = [
-  { title: "Minimum booking", items: [`Self-drive rentals are for a minimum of ${POLICY.minDays} days.`] },
+  { title: "Minimum booking", items: [`Self-drive cars are rented for a minimum of ${POLICY.minDays} days.`, `Bikes are rented for a minimum of ${BIKE_POLICY.minDays} days.`] },
   {
     title: "Returning the car",
     items: [
@@ -228,6 +238,17 @@ export const TERMS = [
     ],
   },
   {
+    title: "Bikes and helmets",
+    items: [
+      "Bikes need a valid two-wheeler driving licence (MCWOG or MCWG). A car licence alone is not enough.",
+      `A refundable deposit of ${BIKE_POLICY.deposit} is taken before handover.`,
+      "One helmet is included free with every bike rental.",
+      "The rider and any pillion must wear a helmet at all times. Fines for riding without one are paid by the renter.",
+      "No more than two people may ride the bike.",
+      "All other terms on this page, including fuel, fines, extensions and cancellation, apply to bikes as they do to cars.",
+    ],
+  },
+  {
     title: "Fines and challans",
     items: [
       "The renter pays all traffic fines, challans and penalties incurred during the rental.",
@@ -250,11 +271,11 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
     id: "documents",
     title: "Documents & ID",
     items: [
-      { q: "What type of licence do I need?", a: "An original, valid Indian driving licence for a light motor vehicle (four-wheeler). You do not need a commercial licence." },
-      { q: "What should I bring when I pick up the car?", a: "Your original driving licence and a government photo ID such as a passport, Aadhaar or Voter ID. We keep a photocopy for our records." },
+      { q: "What type of licence do I need?", a: "An original, valid Indian driving licence for the vehicle you rent: a light motor vehicle (four-wheeler) licence for a car, or a two-wheeler licence (MCWOG or MCWG) for a bike. You do not need a commercial licence." },
+      { q: "What should I bring at pickup?", a: "Your original driving licence and a government photo ID such as a passport, Aadhaar or Voter ID. We keep a photocopy for our records." },
       { q: "What do I need to provide before booking?", a: "Your name, phone number, email, pickup and drop-off dates and times, and your licence and ID details for verification." },
-      { q: "What is the minimum age to rent a car?", a: `${POLICY.minAge} years, with a valid Indian driving licence.` },
-      { q: "Is there a minimum booking duration?", a: `Yes. Self-drive rentals are for a minimum of ${POLICY.minDays} days.` },
+      { q: "What is the minimum age to rent?", a: `${POLICY.minAge} years for a car and ${BIKE_POLICY.minAge} years for a bike, with a valid Indian driving licence for that vehicle.` },
+      { q: "Is there a minimum booking duration?", a: `Yes. Cars are rented for a minimum of ${POLICY.minDays} days, and bikes for a minimum of ${BIKE_POLICY.minDays} days.` },
     ],
   },
   {
@@ -290,10 +311,22 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
     id: "pricing",
     title: "Pricing & payments",
     items: [
-      { q: "How does the security deposit work?", a: `A refundable deposit of ${POLICY.deposit} is taken before handover and returned at the end of the trip, as long as the car comes back undamaged with no pending fines.` },
+      { q: "How does the security deposit work?", a: `A refundable deposit is taken before handover: ${POLICY.deposit} for a car and ${BIKE_POLICY.deposit} for a bike. It is returned at the end of the trip, as long as the vehicle comes back undamaged with no pending fines.` },
       { q: "Is fuel included?", a: "No. Cars are rented gauge to gauge: return the car with the same fuel level it had at delivery." },
       { q: "When do I get my deposit back?", a: "The refund starts as soon as the car is returned and checked. It usually reaches your account within 24 to 48 hours." },
       { q: "How can I pay?", a: "UPI, cash, and major credit and debit cards, for both the rental and the deposit." },
+    ],
+  },
+  {
+    id: "bikes",
+    title: "Bikes & scooters",
+    items: [
+      { q: "What licence do I need to rent a bike?", a: "A valid Indian two-wheeler licence: MCWOG (without gear) or MCWG (with gear). Either covers a scooter like the Activa. A car licence alone is not enough." },
+      { q: "What is the minimum rental for a bike?", a: `${BIKE_POLICY.minDays} days.` },
+      { q: "How much is the deposit for a bike?", a: `${BIKE_POLICY.deposit}, refundable when the bike comes back undamaged with no pending fines.` },
+      { q: "Are helmets included?", a: "Yes, one helmet comes free with every bike. If you're riding with a pillion, ask us about a second one when you book; the law requires both of you to wear one at all times." },
+      { q: "Can two people ride the bike?", a: "Yes, a rider and one pillion, both wearing helmets. No more than two people on the bike." },
+      { q: "Do the other rental terms apply to bikes?", a: "Yes. Fuel, fines, handover hours, extensions and cancellation work the same way as for cars." },
     ],
   },
   {
@@ -320,7 +353,7 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
 
 export const HOME_FAQS: Faq[] = [
   { q: "Is fuel included in the price?", a: "No. Cars are rented gauge to gauge: we hand over the car with a fuel level, and you return it with the same." },
-  { q: "What documents do I need?", a: "An original, valid Indian driving licence and a government photo ID such as a passport or Voter ID." },
+  { q: "What documents do I need?", a: "An original, valid Indian driving licence (four-wheeler for a car, two-wheeler for a bike) and a government photo ID such as a passport or Voter ID." },
   { q: "Are there hidden charges?", a: "No. The quoted price includes standard insurance and taxes. You pay the rental, a refundable deposit and your fuel." },
   { q: "What if I scratch the car?", a: `Minor repairs come out of the deposit. Above ${POLICY.insuranceThreshold}, we may claim through insurance; the daily rental applies while the car is off the road.` },
   { q: "Can I extend my booking?", a: "Usually, if the car is free. Message us on WhatsApp before your booking ends." },

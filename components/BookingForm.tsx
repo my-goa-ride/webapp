@@ -2,7 +2,9 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { BRAND, whatsappUrl } from "@/lib/brand";
-import { CARS, formatPrice, getCar } from "@/lib/cars";
+import { BIKES } from "@/lib/bikes";
+import { CARS, formatPrice } from "@/lib/cars";
+import { getVehicle } from "@/lib/vehicles";
 import { sendBookingEnquiry } from "@/app/actions/enquiry";
 import { Arrow } from "./icons";
 
@@ -43,8 +45,9 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }
     return () => window.removeEventListener(RESERVE_EVENT, pick);
   }, [listen]);
 
-  const car = getCar(carId);
+  const car = getVehicle(carId);
   const carName = car?.name ?? "Any available car";
+  const noun = car?.kind === "bike" ? "bike" : "car";
   const id = (name: string) => `${idPrefix}-${name}`;
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -64,9 +67,9 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }
       return;
     }
     const message = [
-      `Hi ${BRAND.name}! I'd like to reserve a car.`,
+      `Hi ${BRAND.name}! I'd like to reserve a ${noun}.`,
       "",
-      `Car: ${carName}${car ? ` (${formatPrice(car.pricePerDay)} / day)` : ""}`,
+      `Vehicle: ${carName}${car ? ` (${formatPrice(car.pricePerDay)} / day)` : ""}`,
       `Name: ${f.name}`,
       `Deliver to: ${f.deliverTo}`,
       `Collect from: ${f.collectFrom}`,
@@ -96,14 +99,23 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }
   return (
     <form className="form" onSubmit={submit}>
       <div className="field">
-        <label className="label" htmlFor={id("car")}>Car</label>
+        <label className="label" htmlFor={id("car")}>Vehicle</label>
         <select className="inp" id={id("car")} name="carId" value={carId} onChange={(e) => setCarId(e.target.value)}>
           <option value={ANY_CAR}>Any available car</option>
-          {CARS.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name} · {formatPrice(c.pricePerDay)} / day
-            </option>
-          ))}
+          <optgroup label="Cars">
+            {CARS.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name} · {formatPrice(c.pricePerDay)} / day
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Bikes">
+            {BIKES.map((b) => (
+              <option key={b.id} value={b.id}>
+                {b.name} · {formatPrice(b.pricePerDay)} / day
+              </option>
+            ))}
+          </optgroup>
         </select>
       </div>
 
@@ -168,7 +180,7 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }
       )}
 
       <button type="submit" className="send" disabled={pending}>
-        <span>{pending ? "Sending…" : "Request this car"}</span>
+        <span>{pending ? "Sending…" : `Request this ${noun}`}</span>
         <Arrow size={26} />
       </button>
       <p className="fine">No payment now. We confirm availability first, then share payment details.</p>

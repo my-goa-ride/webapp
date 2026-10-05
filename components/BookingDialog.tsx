@@ -1,19 +1,20 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { Bike } from "@/lib/bikes";
 import { formatPrice, type Car } from "@/lib/cars";
 import BookingForm from "./BookingForm";
 import { Close } from "./icons";
 
-export default function BookingDialog({ car, onClose }: { car: Car | null; onClose: () => void }) {
+export default function BookingDialog({ vehicle, onClose }: { vehicle: Car | Bike | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     const d = ref.current;
     if (!d) return;
-    if (car && !d.open) d.showModal();
-    if (!car && d.open) d.close();
-  }, [car]);
+    if (vehicle && !d.open) d.showModal();
+    if (!vehicle && d.open) d.close();
+  }, [vehicle]);
 
   return (
     <dialog
@@ -24,20 +25,20 @@ export default function BookingDialog({ car, onClose }: { car: Car | null; onClo
       // A click on the backdrop lands on the dialog element itself.
       onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}
     >
-      {car && (
+      {vehicle && (
         <div className="sheet-in">
           <div className="sheet-top">
             <div>
-              <span className="label lbl">{car.type} · {formatPrice(car.pricePerDay)} / day</span>
+              <span className="label lbl">{vehicle.type} · {formatPrice(vehicle.pricePerDay)} / day</span>
               <h2 id="booking-title" className="display">
-                Reserve the <em className="ital">{car.name}.</em>
+                Reserve the <em className="ital">{vehicle.name}.</em>
               </h2>
             </div>
             <button type="button" className="x" onClick={() => ref.current?.close()} aria-label="Close">
               <Close />
             </button>
           </div>
-          <BookingForm key={car.id} defaultCarId={car.id} idPrefix="dlg" />
+          <BookingForm key={vehicle.id} defaultCarId={vehicle.id} idPrefix="dlg" />
         </div>
       )}
     </dialog>

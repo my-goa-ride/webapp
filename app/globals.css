@@ -9,6 +9,7 @@
   --rule-strong: rgba(23, 21, 15, 0.28);
   --accent: #8e3a1f;
   --accent-light: #d9876a;
+  --whatsapp: #25d366;
   --gutter: clamp(20px, 5vw, 80px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --head-h: 76px;
@@ -80,6 +81,9 @@ img { display: block; max-width: 100%; }
 .btn svg { transition: transform 0.6s var(--ease); }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--rule-strong); }
 .btn-ghost:hover { color: var(--ink); }
+/* WhatsApp's own green, small, so the booking shortcut is recognisable without crowding a card. */
+.wa-pill { display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 0 14px; border-radius: 999px; background: var(--whatsapp); color: var(--ink); transition: background-color 0.4s; }
+.wa-pill:hover { background: #1ebe5a; color: var(--ink); }
 
 /* ---------- header ---------- */
 .progress {

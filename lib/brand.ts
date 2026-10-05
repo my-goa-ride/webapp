@@ -2,8 +2,10 @@
 // business details and the whole site (copy, links, metadata, JSON-LD) follows.
 
 export const BRAND = {
-  name: "Your Brand",
-  legalName: "Your Brand Car Rentals",
+  name: "MyGoaRide",
+  legalName: "MyGoaRide Car Rentals",
+  // The hero wordmark: the first part is set upright, the rest in italic.
+  wordmark: ["MyGoa", "Ride"],
   tagline: "The coast, at your own pace.",
   description:
     "Self-drive car rental in Goa. Cleaned, checked and delivered to your villa, hotel or the airport.",
@@ -25,15 +27,23 @@ export const BRAND = {
   hours: "Every day, 9:00 AM to 9:00 PM",
 } as const;
 
-// Rental policy figures, carried over from the reference site. Confirm with the business.
+// Rental policy figures for cars, carried over from the reference site. Confirm with the business.
 export const POLICY = {
   minDays: 3,
-  deposit: "₹5,000",
+  deposit: "₹3,000",
   cleaningFee: "₹1,000",
   insuranceThreshold: "₹1,40,000",
   fullRefundDays: 7,
   handoverHours: "9:00 AM to 9:00 PM",
   lateAfter: "9:00 PM",
+  minAge: 18,
+} as const;
+
+// Where bikes differ from the car policy above; everything else (fuel, fines, cancellation,
+// handover hours) follows POLICY.
+export const BIKE_POLICY = {
+  minDays: 3,
+  deposit: "₹1,000",
   minAge: 18,
 } as const;
 
@@ -43,9 +53,10 @@ export function whatsappUrl(message: string) {
 
 export const telHref = `tel:${BRAND.phoneHref}`;
 
-// Placeholder reviews: replace with real, attributable customer reviews before launch.
-export const TESTIMONIALS = [
-  { name: "[Customer name]", place: "[City]", text: "[A short review from a real customer goes here.]" },
-  { name: "[Customer name]", place: "[City]", text: "[A second customer review, one or two sentences long.]" },
-  { name: "[Customer name]", place: "[City]", text: "[A third review, ideally mentioning delivery or the car's condition.]" },
+// The headline figures above the reviews on the home page. Keep them in line with the real numbers.
+export const STATS = [
+  { value: "500+", label: "Happy bookings" },
+  { value: "10k+", label: "Happy customers" },
+  { value: "5+", label: "Years in Goa" },
+  { value: "4.8★", label: "Average rating" },
 ];

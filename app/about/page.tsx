@@ -5,7 +5,7 @@ import PageHead from "@/components/PageHead";
 import { Arrow } from "@/components/icons";
 import { BRAND } from "@/lib/brand";
 import { ABOUT_VALUES } from "@/lib/content";
-import { roman } from "@/lib/format";
+import { listNum } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "About",
@@ -39,7 +39,7 @@ export default function AboutPage() {
             <div style={{ marginTop: 40 }}>
               {ABOUT_VALUES.map((v, i) => (
                 <div key={v.title} className="block rv">
-                  <span className="label muted">{roman(i + 1)}.</span>
+                  <span className="label muted">{listNum(i + 1)}</span>
                   <h3 className="display">{v.title}</h3>
                   <p>{v.text}</p>
                 </div>

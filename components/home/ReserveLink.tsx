@@ -7,7 +7,7 @@ import { Arrow } from "../icons";
 export default function ReserveLink({ carId, carName }: { carId: string; carName: string }) {
   return (
     <a
-      className="ul label act on"
+      className="ul on"
       href="#reserve"
       onClick={() => window.dispatchEvent(new CustomEvent(RESERVE_EVENT, { detail: carId }))}
       aria-label={`Reserve the ${carName}`}

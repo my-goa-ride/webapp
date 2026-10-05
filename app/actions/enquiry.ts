@@ -2,8 +2,9 @@
 
 import { headers } from "next/headers";
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
-import { formatPrice, getCar } from "@/lib/cars";
+import { formatPrice } from "@/lib/cars";
 import { checkRateLimit } from "@/lib/rate-limit";
+import { getVehicle } from "@/lib/vehicles";
 
 // Form submissions are published to an SNS topic; whoever is subscribed to it
 // (email, SMS) gets the enquiry. This runs on the server, so the AWS keys never
@@ -94,14 +95,14 @@ export async function sendBookingEnquiry(form: FormData): Promise<EnquiryResult>
     return { ok: false, error: "The return has to be after the pick-up." };
   }
 
-  // Look the car up here rather than trusting a name or price sent by the browser.
-  const car = getCar(field(form, "carId"));
+  // Look the vehicle up here rather than trusting a name or price sent by the browser.
+  const car = getVehicle(field(form, "carId"));
   const carName = car?.name ?? "Any available car";
 
   const message = [
     "New booking request",
     RULE,
-    `Car:           ${carName}${car ? ` (${formatPrice(car.pricePerDay)} / day)` : ""}`,
+    `Vehicle:       ${carName}${car ? ` (${formatPrice(car.pricePerDay)} / day)` : ""}`,
     "",
     `Name:          ${f.name}`,
     `Phone:         ${f.phone}`,

@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHead from "@/components/PageHead";
 import { BRAND, telHref } from "@/lib/brand";
 import { CANCELLATION, TERMS } from "@/lib/content";
-import { roman, slugify } from "@/lib/format";
+import { listNum, slugify } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Terms & conditions",
@@ -46,7 +46,7 @@ export default function TermsPage() {
             <div style={{ marginTop: "clamp(40px, 5vw, 72px)" }}>
               {TERMS.map((t, i) => (
                 <div key={t.title} id={slugify(t.title)} className="block rv">
-                  <span className="label muted">{roman(i + 1)}.</span>
+                  <span className="label muted">{listNum(i + 1)}</span>
                   <h3 className="display">{t.title}</h3>
                   <ul className="bullets">
                     {t.items.map((x) => <li key={x}>{x}</li>)}

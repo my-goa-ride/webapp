@@ -3,30 +3,27 @@ import { BRAND } from "@/lib/brand";
 import { Arrow } from "../icons";
 import { sceneBack, sceneFront, sceneMid } from "./sceneMarkup";
 
-// The brand name, one letter per span so each rises in turn; words after the
-// first are set in italic, as in the design.
+// The brand wordmark, one letter per span so each rises in turn; parts after
+// the first are set in italic, as in the design.
 function Wordmark() {
   let n = 0;
   // The design sizes an 8-letter name at 14.5vw (one line), and on phones each
-  // 4-letter word at 27vw (a word per line); longer names shrink to fit.
-  const words = BRAND.name.split(" ");
-  const scale = Math.min(1, 8 / words.join("").length);
-  const scalePhone = Math.min(1, 4.5 / Math.max(...words.map((w) => w.length)));
+  // 4-letter part at 27vw (a part per line); longer names shrink to fit.
+  const parts = BRAND.wordmark;
+  const scale = Math.min(1, 8 / parts.join("").length);
+  const scalePhone = Math.min(1, 4.5 / Math.max(...parts.map((p) => p.length)));
   return (
     <div className="wm display" style={{ "--wm-scale": scale, "--wm-scale-m": scalePhone } as React.CSSProperties}>
-      {BRAND.name.split(" ").map((word, w) => (
-        <span key={w}>
-          {w > 0 && " "}
-          <span className={w > 0 ? "wd ital" : "wd"}>
-            {Array.from(word).map((ch, i) => {
-              const delay = 1.5 + n++ * 0.05 + w * 0.03;
-              return (
-                <span key={i} className="lt" style={{ animationDelay: `${delay.toFixed(2)}s` }}>
-                  {ch}
-                </span>
-              );
-            })}
-          </span>
+      {parts.map((part, w) => (
+        <span key={w} className={w > 0 ? "wd ital" : "wd"}>
+          {Array.from(part).map((ch, i) => {
+            const delay = 1.5 + n++ * 0.05 + w * 0.03;
+            return (
+              <span key={i} className="lt" style={{ animationDelay: `${delay.toFixed(2)}s` }}>
+                {ch}
+              </span>
+            );
+          })}
         </span>
       ))}
     </div>

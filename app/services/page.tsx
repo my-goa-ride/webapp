@@ -5,7 +5,7 @@ import PageHead from "@/components/PageHead";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { BRAND, whatsappUrl } from "@/lib/brand";
 import { SERVICES } from "@/lib/content";
-import { roman } from "@/lib/format";
+import { listNum } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -28,7 +28,7 @@ export default function ServicesPage() {
               <Image src={s.image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
             <div className="txt">
-              <span className="label muted rv">{roman(i + 1)}. {s.subtitle}</span>
+              <span className="label muted rv">{listNum(i + 1)} · {s.subtitle}</span>
               <h2 id={`${s.id}-title`} className="display rv">{s.title}</h2>
               <p className="rv">{s.text}</p>
               <ul className="bullets rv">

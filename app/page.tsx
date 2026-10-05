@@ -6,10 +6,10 @@ import Hero from "@/components/home/Hero";
 import ReserveLink from "@/components/home/ReserveLink";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { blogPosts } from "@/lib/blogs";
-import { BRAND, TESTIMONIALS, whatsappUrl } from "@/lib/brand";
+import { BRAND, STATS, telHref, whatsappUrl } from "@/lib/brand";
 import { CARS, COLLECTION, formatPrice, getCar } from "@/lib/cars";
 import { DOCUMENTS, HOME_FAQS, OUTSTATION, REGIONS, STEPS, TAXI_SERVICES, WHY_CHOOSE } from "@/lib/content";
-import { roman } from "@/lib/format";
+import { listNum } from "@/lib/format";
 import "./home.css";
 
 const STATEMENT =
@@ -75,7 +75,13 @@ export default function Home() {
                   <dt>Gearbox</dt><dd>{car.transmission}</dd>
                   <dt>From</dt><dd>{formatPrice(car.pricePerDay)} / day</dd>
                 </dl>
-                <ReserveLink carId={car.id} carName={car.name} />
+                <div className="act label">
+                  <a className="wa-pill" href={whatsappUrl(`Hi ${BRAND.name}! I'd like to book the ${car.name}.`)} target="_blank" rel="noopener noreferrer" aria-label={`Book the ${car.name} on WhatsApp`}>
+                    <WhatsApp size={14} /> WhatsApp
+                  </a>
+                  <a className="ul" href={telHref} aria-label={`Call to book the ${car.name}`}>Or call</a>
+                  <ReserveLink carId={car.id} carName={car.name} />
+                </div>
               </div>
             </article>
           );
@@ -138,9 +144,9 @@ export default function Home() {
             Your car arrives where you are, at the hour you choose, and is collected the same way. The rest of the time, it is simply yours.
           </p>
           <ul className="tenets">
-            <li className="rv"><span className="num display ital">i.</span><div><h3>Delivered</h3><p>To your villa, your hotel, or the airport arrivals hall.</p></div></li>
-            <li className="rv"><span className="num display ital">ii.</span><div><h3>Checked</h3><p>Serviced, inspected and deep-cleaned before every rental.</p></div></li>
-            <li className="rv"><span className="num display ital">iii.</span><div><h3>Looked after</h3><p>Help on WhatsApp or by phone, 24/7, wherever the road takes you.</p></div></li>
+            <li className="rv"><span className="num display ital">{listNum(1)}</span><div><h3>Delivered</h3><p>To your villa, your hotel, or the airport arrivals hall.</p></div></li>
+            <li className="rv"><span className="num display ital">{listNum(2)}</span><div><h3>Checked</h3><p>Serviced, inspected and deep-cleaned before every rental.</p></div></li>
+            <li className="rv"><span className="num display ital">{listNum(3)}</span><div><h3>Looked after</h3><p>Help on WhatsApp or by phone, 24/7, wherever the road takes you.</p></div></li>
           </ul>
         </div>
       </section>
@@ -157,7 +163,7 @@ export default function Home() {
         <ul className="grid-3">
           {WHY_CHOOSE.map((f, i) => (
             <li key={f.title} className="rv">
-              <span className="num display ital">{roman(i + 1)}.</span>
+              <span className="num display ital">{listNum(i + 1)}</span>
               <h3 className="display">{f.title}</h3>
               <p>{f.text}</p>
             </li>
@@ -199,7 +205,7 @@ export default function Home() {
         <div className="rows">
           {TAXI_SERVICES.map((s, i) => (
             <div key={s.title} className="row rv">
-              <span className="idx display ital">{roman(i + 1)}.</span>
+              <span className="idx display ital">{listNum(i + 1)}</span>
               <h3 className="display">{s.title}</h3>
               <div className="body">
                 <p>{s.text}</p>
@@ -233,7 +239,7 @@ export default function Home() {
           <ul className="main tenets tenets-lg">
             {OUTSTATION.map((t, i) => (
               <li key={t.title} className="rv">
-                <span className="num display ital">{roman(i + 1)}.</span>
+                <span className="num display ital">{listNum(i + 1)}</span>
                 <div>
                   <h3 className="display">{t.title}</h3>
                   <p>{t.text}</p>
@@ -269,22 +275,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS (placeholders until real reviews are added in lib/brand.ts) */}
-      <section className="sec dark wrap" aria-labelledby="quotes-title">
+      {/* BY THE NUMBERS */}
+      <section className="sec dark wrap" aria-labelledby="stats-title">
         <div className="sec-head">
-          <span className="label rv">Guests</span>
-          <h2 id="quotes-title" className="display rv">
-            In their <em className="ital">words.</em>
+          <span className="label rv">Our guests</span>
+          <h2 id="stats-title" className="display rv">
+            By the <em className="ital">numbers.</em>
           </h2>
         </div>
-        <div className="quotes">
-          {TESTIMONIALS.map((t, i) => (
-            <figure key={i} className="quote rv">
-              <blockquote className="display">{t.text}</blockquote>
-              <figcaption className="label">{t.name} · {t.place}</figcaption>
-            </figure>
+        <dl className="stats">
+          {STATS.map((s) => (
+            <div key={s.label} className="stat rv">
+              <dt className="label">{s.label}</dt>
+              <dd className="display">{s.value}</dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </section>
 
       {/* DELIVERY LOCATIONS */}

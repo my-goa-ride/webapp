@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import FleetBrowser from "@/components/FleetBrowser";
 import PageHead from "@/components/PageHead";
+import WhatsAppNote from "@/components/WhatsAppNote";
 import { BRAND } from "@/lib/brand";
 import { CARS, getCar } from "@/lib/cars";
 
@@ -40,9 +41,12 @@ export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
         title="The"
         italic="fleet."
         intro={
-          place
-            ? `Every car below can be delivered to ${place}. Insurance and taxes included; no hidden fees.`
-            : "Insurance and taxes included. No hidden fees. Delivered to your villa, hotel or the airport."
+          <>
+            {place
+              ? `Every car below can be delivered to ${place}. Insurance and taxes included; no hidden fees.`
+              : "Insurance and taxes included. No hidden fees. Delivered to your villa, hotel or the airport."}
+            <WhatsAppNote noun="car" />
+          </>
         }
       />
       <FleetBrowser initialQuery={car?.name ?? ""} />

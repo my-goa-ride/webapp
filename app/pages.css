@@ -34,6 +34,7 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .car { display: flex; flex-direction: column; }
 .car-ph { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
 .car-ph img { object-fit: cover; transition: transform 1.2s var(--ease); }
+.car-ph .ph-none { position: absolute; inset: 0; display: grid; place-items: center; }
 .car-meta { display: flex; justify-content: space-between; padding: 14px 0 12px; border-bottom: 1px solid var(--rule); }
 .car h3 { margin: 18px 0 16px; font-size: clamp(30px, 2.6vw, 40px); line-height: 1.02; }
 .car dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; font-size: 15px; }
@@ -44,7 +45,9 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .car-foot .price { margin: 0; }
 .car-foot .price .display { font-size: 32px; line-height: 1; }
 .car-foot .btn { min-height: 48px; }
-.car-links { display: flex; gap: 22px; padding-top: 8px; }
+.car-links { display: flex; align-items: center; gap: 22px; padding-top: 12px; }
+.wa-note { display: flex; width: fit-content; align-items: center; gap: 8px; margin-top: 14px; color: var(--ink); font-weight: 500; }
+.wa-note svg { color: #1a9e4b; }
 .empty { padding: 80px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
 .empty p { margin: 0; font-size: clamp(28px, 3vw, 44px); }
 

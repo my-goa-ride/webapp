@@ -3,7 +3,7 @@ import Link from "next/link";
 import PageHead from "@/components/PageHead";
 import { Arrow } from "@/components/icons";
 import { PRIVACY, RULES, TIPS } from "@/lib/content";
-import { roman } from "@/lib/format";
+import { listNum } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Rental guidelines",
@@ -36,7 +36,7 @@ export default function GuidelinesPage() {
           <div className="main">
             {RULES.map((r, i) => (
               <div key={r.title} className="block rv">
-                <span className="label muted">{roman(i + 1)}.</span>
+                <span className="label muted">{listNum(i + 1)}</span>
                 <h3 className="display">{r.title}</h3>
                 <ul className="bullets">
                   {r.items.map((x) => <li key={x}>{x}</li>)}

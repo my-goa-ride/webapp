@@ -1,8 +1,6 @@
-const NUMERALS = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii"];
-
-// Lower-case roman numerals for the design's numbered lists (i., ii., iii.).
-export function roman(n: number) {
-  return NUMERALS[n - 1] ?? String(n);
+// Two-digit numbers for the design's numbered lists (01, 02, 03).
+export function listNum(n: number) {
+  return String(n).padStart(2, "0");
 }
 
 // Splits a heading so its last word can be set in italic: "Mahindra Thar" -> ["Mahindra", "Thar"].
