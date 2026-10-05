@@ -14,7 +14,7 @@
 }
 
 /* ---------- HERO: a day in Goa ---------- */
-.day-hero { position: relative; height: max(640px, min(100svh, 1060px)); overflow: hidden; background: var(--paper); --R: clamp(140px, 30vw, 440px); --day: 16s; }
+.day-hero { --hero-h: max(640px, min(100svh, 1060px)); position: relative; height: var(--hero-h); overflow: hidden; background: var(--paper); --R: clamp(140px, 30vw, 440px); --day: 16s; }
 .day-hero > .layers { display: contents; }
 .cyc { animation-duration: var(--day, 16s); animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-delay: 2.8s; animation-fill-mode: both; }
 .sky { position: absolute; inset: 0; will-change: opacity; }
@@ -248,7 +248,16 @@
 
 /* ---------- phone ---------- */
 @media (max-width: 720px) {
-  .wm { top: 31%; font-size: calc(27vw * var(--wm-scale-m, 1)); line-height: 0.84; }
+  /* The wordmark sits in the gap between the time-of-day block (which ends ~161px below its
+     top) and the car (94vw wide, so 36vw tall, with its bottom at 20%), and shrinks to fit
+     that gap on shorter screens, so it never overlaps either. */
+  .day-hero { --ui-end: calc(clamp(96px, 12vh, 118px) + 161px); --car-h: 36.1vw; }
+  .wm {
+    top: calc(var(--ui-end) + 14px); bottom: calc(20% + var(--car-h) + 10px);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    font-size: min(calc(27vw * var(--wm-scale-m, 1)), calc((var(--hero-h) * 0.8 - var(--car-h) - var(--ui-end) - 24px) / 1.9));
+    line-height: 0.84;
+  }
   .wm .wd { display: block; }
   .day-hero { --R: 46vw; }
   .car-x { width: 94vw; bottom: 20%; }
