@@ -38,11 +38,13 @@ interface Props {
   /** Home page only: follow "Reserve this car" links on the page. */
   listen?: boolean;
   idPrefix: string;
+  /** Told when the visitor picks another vehicle, so a surrounding title can follow. */
+  onVehicleChange?: (id: string) => void;
 }
 
 // The request is sent by a server action (published to SNS). If that fails, the
 // visitor can still send the same request as a pre-filled WhatsApp message.
-export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }: Props) {
+export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix, onVehicleChange }: Props) {
   const [carId, setCarId] = useState(defaultCarId);
   const [error, setError] = useState<{ text: string; whatsapp?: string } | null>(null);
   const [pending, setPending] = useState(false);
@@ -141,7 +143,7 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix }
     <form className="form" onSubmit={submit} onInput={v.onInput} noValidate>
       <div className="field">
         <label className="label" id={id("car-label")} htmlFor={id("car")}>Vehicle</label>
-        <VehicleSelect id={id("car")} labelId={id("car-label")} name="carId" value={carId} onChange={setCarId} />
+        <VehicleSelect id={id("car")} labelId={id("car-label")} name="carId" value={carId} onChange={(v) => { setCarId(v); onVehicleChange?.(v); }} />
       </div>
 
       <div className="field">

@@ -40,7 +40,9 @@ function Thumb({ o }: { o: Option }) {
   if (o.id === ANY.id) return <span className="vs-thumb vs-any display" aria-hidden="true">{CARS.length}</span>;
   return (
     <span className="vs-thumb" aria-hidden="true">
-      {o.image && <Image src={o.image} alt="" width={112} height={80} sizes="56px" />}
+      {/* Eager: lazy images inside the scrolling list stay pending after it closes, and those
+          stalled requests then hold up the booking request on the browser's few connections. */}
+      {o.image && <Image src={o.image} alt="" width={112} height={80} sizes="56px" loading="eager" />}
     </span>
   );
 }
