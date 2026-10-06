@@ -4,16 +4,54 @@
 .inp-light {
   width: 100%; min-height: 48px; padding: 0; background: transparent; border: 0;
   border-bottom: 1px solid var(--rule-strong); border-radius: 0; font-size: 18px; color: var(--ink);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-select.inp-light {
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: calc(100% - 12px) 50%, calc(100% - 7px) 50%; background-size: 5px 5px; background-repeat: no-repeat;
-  padding-right: 28px;
-}
-textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
+/* Grows with the message instead of showing a resize grip. */
+textarea.inp-light { min-height: 140px; max-height: 420px; padding-top: 12px; resize: none; field-sizing: content; }
 .inp-light::placeholder { color: #8f887c; }
-.inp-light:focus { outline: none; border-bottom-color: var(--accent); }
+.inp-light:focus { outline: none; border-bottom-color: var(--accent); box-shadow: inset 0 -1px 0 var(--accent); }
+.inp-light[aria-invalid="true"] { border-bottom-color: var(--accent); }
+.inp-light:-webkit-autofill, .inp-light:-webkit-autofill:hover, .inp-light:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--ink); -webkit-box-shadow: inset 0 0 0 100px var(--paper); transition: background-color 9999s;
+}
+/* The search box's own clear button, redrawn as a thin cross. */
+.inp-light[type="search"]::-webkit-search-decoration { appearance: none; }
+.inp-light[type="search"]::-webkit-search-cancel-button {
+  appearance: none; width: 14px; height: 14px; cursor: pointer; opacity: 0.6;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%2317150f' stroke-width='1.3'%3E%3Cpath d='M2 2l10 10M12 2L2 12'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+.inp-light[type="search"]::-webkit-search-cancel-button:hover { opacity: 1; }
+
+/* ---------- dropdown (fleet filters) ---------- */
+.sel { position: relative; }
+.sel-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; min-height: 48px; padding: 0 2px 0 0; background: transparent; border: 0; text-align: left;
+  border-bottom: 1px solid var(--rule-strong); font-size: 18px; color: var(--ink);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.sel-btn > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sel-btn svg { flex-shrink: 0; transition: transform 0.4s var(--ease); }
+.sel-btn:focus-visible { outline: none; border-bottom-color: var(--accent); box-shadow: inset 0 -1px 0 var(--accent); }
+.sel.open .sel-btn { border-bottom-color: var(--accent); }
+.sel.open .sel-btn svg { transform: rotate(180deg); }
+.sel-list {
+  position: absolute; z-index: 20; left: 0; right: 0; top: calc(100% + 8px); min-width: 200px;
+  margin: 0; padding: 6px; list-style: none; background: #f7f4ef; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 14px; box-shadow: 0 18px 44px -14px rgba(23, 21, 15, 0.28);
+  animation: vsIn 0.25s var(--ease) both;
+}
+.sel-list.up { top: auto; bottom: calc(100% + 8px); animation-name: vsInUp; }
+.sel-list.end { left: auto; }
+.sel-list:focus { outline: none; }
+.sel-list li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  min-height: 44px; padding: 0 14px; border-radius: 9px; cursor: pointer; font-size: 16px; transition: background-color 0.15s;
+}
+.sel-list li.on { background: var(--paper-2); }
+.sel-list li svg { opacity: 0; color: var(--accent); }
+.sel-list li[aria-selected="true"] { color: var(--accent); font-weight: 500; }
+.sel-list li[aria-selected="true"] svg { opacity: 1; }
 
 /* ---------- fleet ---------- */
 .filters { display: flex; flex-direction: column; gap: 28px; padding-bottom: 12px; }
@@ -23,7 +61,8 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
   min-height: 44px; padding: 0 18px; border-radius: 999px; background: transparent;
-  border: 1px solid var(--rule-strong); font-size: 14px; transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 1px solid var(--rule-strong); font-size: 14px; white-space: nowrap; flex-shrink: 0;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 .chip.on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .filters-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 14px; border-top: 1px solid var(--rule); }
@@ -35,6 +74,8 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .car-ph { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--paper-2); }
 .car-ph img { object-fit: cover; transition: transform 1.2s var(--ease); }
 .car-ph .ph-none { position: absolute; inset: 0; display: grid; place-items: center; }
+/* White studio backgrounds multiply away into the card's tone. */
+.car-ph.cut img { object-fit: contain; padding: 6% 8%; mix-blend-mode: multiply; }
 .car-meta { display: flex; justify-content: space-between; padding: 14px 0 12px; border-bottom: 1px solid var(--rule); }
 .car h3 { margin: 18px 0 16px; font-size: clamp(30px, 2.6vw, 40px); line-height: 1.02; }
 .car dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 20px; font-size: 15px; }
@@ -107,7 +148,8 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .article-head h1 { margin: 0; font-size: clamp(42px, 6vw, 88px); line-height: 1; }
 .article-head .meta { display: flex; flex-wrap: wrap; gap: 8px 28px; color: var(--muted); }
 .article-ph { position: relative; aspect-ratio: 21 / 9; overflow: hidden; background: var(--paper-2); margin: clamp(40px, 5vw, 72px) 0; }
-.article-ph img { object-fit: cover; }
+/* A slight zoom trims the dark frame some source photos carry on their edges. */
+.article-ph img { object-fit: cover; transform: scale(1.03); }
 .prose { max-width: 70ch; margin: 0 auto; font-size: 18px; line-height: 1.75; }
 .prose h2, .prose h3 { font-family: var(--font-display), system-ui, sans-serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin: 1.8em 0 0.6em; }
 .prose h2 { font-size: clamp(30px, 3vw, 42px); }
@@ -129,16 +171,19 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 .contact .info > div { padding: 22px 0; border-top: 1px solid var(--rule); display: flex; flex-direction: column; gap: 4px; }
 .contact .info .label { color: var(--muted); margin-bottom: 6px; }
 .contact .info .ul { align-self: flex-start; min-height: 36px; font-size: clamp(20px, 1.8vw, 26px); }
+.contact .info .ul.label { min-height: 44px; font-size: 12.5px; }
 .contact .form-wrap { grid-column: 7 / span 6; }
 .lform { display: flex; flex-direction: column; gap: 28px; }
-.lform .field label { color: var(--muted); }
 .lform .form-error { color: var(--accent); border-color: rgba(142, 58, 31, 0.4); }
+.lform .field-error { color: var(--accent); }
 .lthanks { display: flex; flex-direction: column; gap: 16px; border-top: 1px solid var(--rule-strong); padding-top: 26px; }
 .lthanks h2 { margin: 0; font-size: clamp(40px, 4.6vw, 64px); line-height: 1; }
 .lthanks p { margin: 0; color: var(--muted); }
 
 @media (hover: hover) {
   .chip:not(.on):hover { border-color: var(--ink); }
+  .inp-light:hover:not(:focus) { border-bottom-color: var(--ink); }
+  .sel:not(.open) .sel-btn:hover { border-bottom-color: var(--ink); }
   .car:hover .car-ph img, .entry:hover .ph img, .lead-post:hover .ph img { transform: scale(1.04); }
   .entry a:hover h3, .lead-post a:hover h2 { color: var(--accent); }
 }
@@ -155,6 +200,14 @@ textarea.inp-light { min-height: 140px; padding-top: 12px; resize: vertical; }
 @media (max-width: 720px) {
   .filters-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .filters-top .search { grid-column: 1 / -1; }
+  /* Chips scroll sideways in one row instead of leaving a lone chip on a second line. */
+  .filters-chips { gap: 22px; }
+  .filter { min-width: 0; width: 100%; }
+  .chips {
+    flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+    margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter);
+  }
+  .chips::-webkit-scrollbar { display: none; }
   .fleet-grid, .journal { grid-template-columns: minmax(0, 1fr); }
   .prose { font-size: 17px; }
 }

@@ -38,23 +38,28 @@ export const CARS: Car[] = [
 ];
 
 // The three cars shown as exhibits on the home page, each with a side-profile cutout.
+// The cutouts are cropped tight to the car, so drawing each at a width proportional to
+// its real length (manufacturer figures, mm) keeps the three at one true scale.
 export const COLLECTION = [
   {
     carId: "hyundai-venue",
     kind: "Compact SUV",
     art: { src: "/images/collection/venue.webp", width: 1600, height: 702, alt: "Grey Hyundai Venue, side profile" },
+    lengthMm: 3995,
     blurb: "For town, the airport, and everything in between. Easy to park in Panjim, happy on the highway.",
   },
   {
     carId: "toyota-fortuner",
     kind: "Premium SUV",
     art: { src: "/images/collection/fortuner.webp", width: 1600, height: 654, alt: "Silver Toyota Fortuner, side profile" },
+    lengthMm: 4795,
     blurb: "Quiet, composed and generous with luggage. For longer days and the drive down south.",
   },
   {
     carId: "mahindra-thar",
     kind: "Four-wheel drive",
     art: { src: "/images/collection/thar.webp", width: 1600, height: 772, alt: "Black Mahindra Thar hard top, side profile" },
+    lengthMm: 3985,
     blurb: "For laterite tracks, hill roads to the ghats, and the long way round to the fort.",
   },
 ] as const;

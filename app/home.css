@@ -6,7 +6,7 @@
   display: grid; place-items: center; pointer-events: none;
   animation: curtainUp 1s cubic-bezier(0.76, 0, 0.24, 1) 1.15s forwards;
 }
-.curtain span { font-size: clamp(40px, 6vw, 72px); opacity: 0; animation: fadeIn 0.9s ease-out 0.1s forwards; }
+.curtain img { width: clamp(220px, 32vw, 440px); height: auto; opacity: 0; animation: fadeIn 0.9s ease-out 0.1s forwards; }
 
 .floor {
   position: absolute; left: 3%; right: 3%; bottom: -2.5%; height: 9%;
@@ -110,8 +110,10 @@
 .coll-head p { grid-column: 9 / span 4; margin: 0; max-width: 30ch; }
 .exhibit { padding-top: clamp(56px, 7vw, 110px); padding-bottom: clamp(40px, 5vw, 72px); }
 .ex-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
-.ex-car { position: relative; width: min(76vw, 1060px); margin-top: clamp(32px, 5vw, 72px); }
-.ex-car img { width: 100%; height: auto; position: relative; z-index: 1; transition: transform 1.2s var(--ease); }
+/* --scale is the car's real length over the longest exhibit's, so all three share one scale. */
+.ex-car { position: relative; width: calc(min(76vw, 1060px) * var(--scale, 1)); margin-top: clamp(32px, 5vw, 72px); background: var(--paper); }
+/* Multiply hides the light fringe left around the cutouts. */
+.ex-car img { width: 100%; height: auto; position: relative; z-index: 1; mix-blend-mode: multiply; transition: transform 1.2s var(--ease); }
 .ex-right .ex-car { margin-left: auto; }
 .ex-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; margin-top: clamp(28px, 3vw, 44px); padding-top: 22px; border-top: 1px solid var(--rule-strong); }
 .ex-grid h3 { grid-column: 1 / span 4; margin: 0; font-size: clamp(34px, 3.6vw, 56px); line-height: 1; }
@@ -120,6 +122,32 @@
 .ex-grid dt { color: var(--muted); }
 .ex-grid dd { margin: 0; text-align: right; }
 .ex-grid .act { grid-column: 9 / span 4; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 14px 22px; }
+/* Laptops and up: each car sits beside its details, alternating sides, and is held to
+   about 40% of the screen's height, so the three exhibits read as one compact set. */
+@media (min-width: 1025px) {
+  .coll-head { padding-bottom: clamp(16px, 2vw, 32px); }
+  .coll-head h2 { font-size: clamp(44px, 6.4vw, 104px); }
+  .exhibit {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: center;
+    padding-top: clamp(20px, 2.2vw, 36px); padding-bottom: clamp(8px, 1vw, 16px);
+  }
+  .ex-top { grid-column: 1 / -1; padding: 10px 0; }
+  .ex-car {
+    grid-column: 1 / span 6; grid-row: 2; justify-self: center;
+    width: calc(min(100%, 40svh * 2.45, 760px) * var(--scale, 1)); margin-top: clamp(12px, 1.6vw, 24px);
+  }
+  .ex-right .ex-car { grid-column: 7 / -1; margin-left: 0; }
+  .ex-grid {
+    grid-column: 8 / span 5; grid-row: 2; display: flex; flex-direction: column; gap: 12px; max-width: 480px;
+    margin-top: clamp(12px, 1.6vw, 24px); padding-top: 0; border-top: 0;
+  }
+  .ex-right .ex-grid { grid-column: 1 / span 5; }
+  .ex-grid h3 { font-size: clamp(28px, 2.5vw, 40px); }
+  .ex-grid .desc { max-width: 44ch; font-size: 15px; }
+  .ex-grid dl { gap: 6px 20px; font-size: 14px; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .ex-grid .act { justify-content: flex-start; gap: 10px 20px; padding-top: 2px; }
+  .coll-foot { margin-top: clamp(16px, 2vw, 32px); }
+}
 .coll-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 22px 0; border-top: 1px solid var(--rule); }
 
 /* ---------- documents ---------- */
@@ -276,7 +304,7 @@
   .daybar { width: 100%; padding-top: 0; }
   .moon { top: 30%; right: 10%; }
   .ui-cta { align-items: flex-start; }
-  .ex-car { width: 100%; }
+  .ex-car { width: calc(100% * var(--scale, 1)); }
   .ex-grid .desc, .ex-grid dl, .ex-grid .act { grid-column: 1 / span 12; }
   .ex-grid .act { justify-content: flex-start; }
   .bleed { height: auto; aspect-ratio: 4 / 5; }

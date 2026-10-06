@@ -2,13 +2,28 @@
 
 import { useState } from "react";
 
-// Uses the system share sheet where there is one, otherwise copies the link.
+// The older copy route, for browsers that refuse the Clipboard API (no focus, no permission).
+function copyWithSelection(text: string) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.cssText = "position:fixed;opacity:0;pointer-events:none";
+  document.body.append(ta);
+  ta.select();
+  const ok = document.execCommand("copy");
+  ta.remove();
+  return ok;
+}
+
+const LABELS = { idle: "Share this story", copied: "Link copied", failed: "Couldn't copy the link" };
+
+// On phones, the system share sheet; on desktop (where that sheet is a clunky OS window), copies the link.
 export default function ShareButton({ title }: { title: string }) {
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<keyof typeof LABELS>("idle");
 
   const share = async () => {
     const url = window.location.href;
-    if (navigator.share) {
+    if (navigator.share && window.matchMedia("(pointer: coarse)").matches) {
       try {
         await navigator.share({ title, url });
       } catch {
@@ -16,14 +31,14 @@ export default function ShareButton({ title }: { title: string }) {
       }
       return;
     }
-    await navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const ok = (await navigator.clipboard?.writeText(url).then(() => true, () => false)) || copyWithSelection(url);
+    setStatus(ok ? "copied" : "failed");
+    setTimeout(() => setStatus("idle"), 2500);
   };
 
   return (
     <button type="button" className="ul label link-btn" onClick={share}>
-      <span aria-live="polite">{copied ? "Link copied" : "Share this story"}</span>
+      <span aria-live="polite">{LABELS[status]}</span>
     </button>
   );
 }

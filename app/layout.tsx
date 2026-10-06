@@ -39,6 +39,8 @@ const localBusiness = {
   "@type": "AutoRental",
   name: BRAND.legalName,
   url: BRAND.siteUrl,
+  logo: `${BRAND.siteUrl}/brand/logo.png`,
+  image: `${BRAND.siteUrl}/brand/logo.png`,
   telephone: BRAND.phoneHref,
   email: BRAND.email,
   address: {

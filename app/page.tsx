@@ -9,11 +9,14 @@ import { blogPosts } from "@/lib/blogs";
 import { BRAND, STATS, telHref, whatsappUrl } from "@/lib/brand";
 import { CARS, COLLECTION, formatPrice, getCar } from "@/lib/cars";
 import { DOCUMENTS, HOME_FAQS, OUTSTATION, REGIONS, STEPS, TAXI_SERVICES, WHY_CHOOSE } from "@/lib/content";
-import { listNum } from "@/lib/format";
+import { listNum, splitLast } from "@/lib/format";
 import "./home.css";
 
 const STATEMENT =
   "We keep our cars well. Each one is cleaned, checked and brought to your door, so the only thing left to decide is which road to take.";
+
+// The longest exhibit is drawn full width; the others in proportion to it.
+const LONGEST = Math.max(...COLLECTION.map((c) => c.lengthMm));
 
 export default function Home() {
   const words = STATEMENT.split(" ");
@@ -22,7 +25,7 @@ export default function Home() {
   return (
     <>
       <div className="curtain" aria-hidden="true">
-        <span className="display ital">{BRAND.name}</span>
+        <Image src="/brand/logo-full-light.svg" width={812} height={342} alt="" priority />
       </div>
 
       <Hero />
@@ -63,12 +66,15 @@ export default function Home() {
                 <span>No. {String(i + 1).padStart(2, "0")}</span>
                 <span>{item.kind}</span>
               </div>
-              <div className={`ex-car ${right ? "from-r" : "from-l"}`} style={i === 2 ? { width: "min(64vw, 900px)" } : undefined}>
+              <div
+                className={`ex-car ${right ? "from-r" : "from-l"}`}
+                style={{ "--scale": item.lengthMm / LONGEST } as React.CSSProperties}
+              >
                 <div className="floor" aria-hidden="true" />
                 <Image src={item.art.src} width={item.art.width} height={item.art.height} alt={item.art.alt} sizes="(max-width: 720px) 100vw, 76vw" />
               </div>
               <div className="ex-grid rv">
-                <h3 className="display">{car.name}</h3>
+                <h3 className="display">{splitLast(car.name)[0]} <em className="ital">{splitLast(car.name)[1]}</em></h3>
                 <p className="desc muted">{item.blurb}</p>
                 <dl>
                   <dt>Seats</dt><dd>{car.seats}</dd>

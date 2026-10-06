@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BRAND, telHref } from "@/lib/brand";
 import { CARS } from "@/lib/cars";
@@ -64,7 +65,7 @@ export default function SiteFooter() {
         </div>
       </nav>
 
-      <div className="wordmark display ital" aria-hidden="true">{BRAND.name}</div>
+      <Image className="wordmark" src="/brand/logo-full.svg" width={812} height={342} alt={`${BRAND.name}, self-drive car rentals`} />
       <div className="small">
         <span>© {new Date().getFullYear()} {BRAND.legalName}</span>
         <a className="ul" href="#top">Back to top</a>

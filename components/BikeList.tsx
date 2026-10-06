@@ -20,6 +20,7 @@ export default function BikeList() {
               number={i + 1}
               specs={[["Engine", bike.engine], ["Gearbox", bike.transmission], ["Fuel", bike.fuel]]}
               priority={i < 3}
+              cutout
               onReserve={() => setBooking(bike)}
             />
           ))}

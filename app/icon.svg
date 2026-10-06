@@ -1,13 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#17150f"/>
-  <circle cx="48" cy="14" r="7.5" fill="#d9876a"/>
-  <g transform="translate(32 32) scale(1.12) translate(-32 -34.4)">
-  <path fill="#efebe4" d="M7 41V34Q7 30.5 10.5 29.8L17.5 28.4L23 20.8Q24.6 18.6 27.3 18.6H38.6Q41.3 18.6 42.8 20.8L47.6 28.2L53.4 29.3Q57 30 57 34V41Q57 43 55 43H9Q7 43 7 41Z"/>
-  <path fill="#17150f" d="M25.3 22H31.2V28H20.9ZM34.4 22H38.8Q39.9 22 40.5 22.9L43.6 28H34.4Z"/>
-  <circle cx="19" cy="43" r="7.2" fill="#17150f"/>
-  <circle cx="19" cy="43" r="5.2" fill="#efebe4"/>
-  <circle cx="19" cy="43" r="1.8" fill="#17150f"/>
-  <circle cx="45" cy="43" r="7.2" fill="#17150f"/>
-  <circle cx="45" cy="43" r="5.2" fill="#efebe4"/>
-  <circle cx="45" cy="43" r="1.8" fill="#17150f"/>
-  </g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 338 338" role="img" aria-label="MyGoaRide"><g transform="translate(52.5 -3)"><g transform="translate(0.00 0.00) scale(1.3714) translate(14.20 9.31)"><g transform="rotate(-10 70 118)">
+<path d="M52 192 H88 V220 L80 230 H60 L52 220 Z" fill="#2B1A14"/>
+<path d="M63 198 V222" stroke="#FCEBDD" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+<circle cx="116" cy="14" r="12" fill="none" stroke="#2B1A14" stroke-width="3.5"/>
+<path d="M30 20 Q30 6 46 6 H100 Q130 6 132 36 L134 160 Q134 196 98 198 H44 Q8 196 8 160 L10 44 Q12 24 30 20 Z M116.5 24 A4.5 4.5 0 1 0 107.5 24 A4.5 4.5 0 1 0 116.5 24 Z" fill="#EE6B4D" fill-rule="evenodd"/>
+<rect x="22" y="34" width="96" height="150" rx="34" fill="none" stroke="#2B1A14" stroke-width="1.5" opacity="0.55"/>
+<path d="M34 98 H106 M34 148 H106" stroke="#2B1A14" stroke-width="1" opacity="0.35"/>
+<g transform="translate(0 4)">
+<path d="M56 82 A14 14 0 0 1 84 82 Z" fill="#2B1A14"/>
+<path d="M44 82 H96" stroke="#2B1A14" stroke-width="1.5"/>
+<path d="M62 86 Q58 72 68 58" stroke="#2B1A14" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M68 58 Q58 53 50 60 M68 58 Q61 48 51 47 M68 58 Q73 48 83 48 M68 58 Q80 56 85 64" stroke="#2B1A14" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+</g>
+<g transform="translate(-0.2 0)">
+<path d="M54.1 116.4 A10 10 0 1 0 57 123.5 H49" stroke="#2B1A14" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47 116.8 V118.2 M40.3 123.5 H41.7 M42.3 128.2 L43.3 127.2" stroke="#2B1A14" stroke-width="1.2" stroke-linecap="round"/>
+<circle cx="47" cy="123.5" r="2.2" fill="#2B1A14"/>
+</g>
+<g transform="translate(62.8 112.5) scale(0.22)"><circle cx="50" cy="50" r="42" fill="none" stroke="#2B1A14" stroke-width="13"/><path d="M8 54 H38 M62 54 H92 M50 64 V92" stroke="#2B1A14" stroke-width="11"/><circle cx="50" cy="54" r="13" fill="#2B1A14"/><rect x="44" y="1" width="12" height="16" rx="2" fill="#2B1A14"/></g>
+<g transform="translate(1.65 0)">
+<path d="M91.6 113 H94.4 L103.5 134 H82.5 Z" fill="#2B1A14" stroke="#2B1A14" stroke-width="1" stroke-linejoin="round"/>
+<path d="M93 118 V133" stroke="#EE6B4D" stroke-width="1.5" stroke-dasharray="3 2.5"/>
+</g>
+<rect x="48" y="162" width="15" height="12" rx="2.5" fill="#2B1A14"/>
+<path d="M51 162 V158 A4.5 4.5 0 0 1 60 158 V162" stroke="#2B1A14" stroke-width="2.2" fill="none"/>
+<circle cx="55.5" cy="168" r="1.4" fill="#EE6B4D"/>
+<path d="M70 158 V176" stroke="#2B1A14" stroke-width="1" opacity="0.35"/>
+<rect x="77" y="162" width="15" height="12" rx="2.5" fill="#2B1A14"/>
+<path d="M80 162 V156 A4.5 4.5 0 0 1 89 156" stroke="#2B1A14" stroke-width="2.2" fill="none"/>
+<circle cx="84.5" cy="168" r="1.4" fill="#EE6B4D"/>
+<circle cx="125" cy="52" r="2" fill="#2B1A14"/>
+</g></g></g></svg>

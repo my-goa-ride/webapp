@@ -22,14 +22,16 @@ interface Props {
   number: number;
   specs: [label: string, value: React.ReactNode][];
   priority?: boolean;
+  /** Studio shots on white: blended into the page instead of sitting in a white box. */
+  cutout?: boolean;
   onReserve: () => void;
 }
 
 // One card in the fleet grid, used for both cars and bikes.
-export default function VehicleCard({ vehicle: v, number, specs, priority, onReserve }: Props) {
+export default function VehicleCard({ vehicle: v, number, specs, priority, cutout, onReserve }: Props) {
   return (
     <li className="car rv">
-      <div className="car-ph">
+      <div className={cutout ? "car-ph cut" : "car-ph"}>
         {v.image ? (
           <Image src={v.image} alt={v.name} fill sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" priority={priority} />
         ) : (

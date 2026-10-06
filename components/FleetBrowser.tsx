@@ -3,11 +3,23 @@
 import { useMemo, useState } from "react";
 import { CARS, type Car } from "@/lib/cars";
 import BookingDialog from "./BookingDialog";
+import Select from "./Select";
 import VehicleCard from "./VehicleCard";
 
 const TYPES = ["All", ...Array.from(new Set(CARS.map((c) => c.type)))];
 const GEARBOX = ["All", "Automatic", "Manual"];
 const FUELS = ["All", ...Array.from(new Set(CARS.map((c) => c.fuel)))];
+const SEATS = [
+  { value: 0, label: "Any" },
+  { value: 5, label: "5 or more" },
+  { value: 6, label: "6 or more" },
+  { value: 7, label: "7" },
+];
+const SORTS = [
+  { value: "recommended", label: "Recommended" },
+  { value: "price-low", label: "Price, low to high" },
+  { value: "price-high", label: "Price, high to low" },
+];
 
 function Chips({ label, options, value, onChange }: { label: string; options: string[]; value: string; onChange: (v: string) => void }) {
   return (
@@ -65,21 +77,12 @@ export default function FleetBrowser({ initialQuery = "" }: { initialQuery?: str
             <input id="fleet-search" className="inp-light" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Thar, Innova, Swift…" />
           </div>
           <div className="field">
-            <label className="label muted" htmlFor="fleet-seats">Seats</label>
-            <select id="fleet-seats" className="inp-light" value={seats} onChange={(e) => setSeats(Number(e.target.value))}>
-              <option value={0}>Any</option>
-              <option value={5}>5 or more</option>
-              <option value={6}>6 or more</option>
-              <option value={7}>7</option>
-            </select>
+            <label className="label muted" id="fleet-seats-label" htmlFor="fleet-seats">Seats</label>
+            <Select id="fleet-seats" labelId="fleet-seats-label" value={seats} options={SEATS} onChange={setSeats} />
           </div>
           <div className="field">
-            <label className="label muted" htmlFor="fleet-sort">Sort</label>
-            <select id="fleet-sort" className="inp-light" value={sort} onChange={(e) => setSort(e.target.value)}>
-              <option value="recommended">Recommended</option>
-              <option value="price-low">Price, low to high</option>
-              <option value="price-high">Price, high to low</option>
-            </select>
+            <label className="label muted" id="fleet-sort-label" htmlFor="fleet-sort">Sort</label>
+            <Select id="fleet-sort" labelId="fleet-sort-label" value={sort} options={SORTS} onChange={setSort} alignEnd />
           </div>
         </div>
         <div className="filters-chips">

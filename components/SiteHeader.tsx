@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BRAND, telHref } from "@/lib/brand";
@@ -28,8 +29,8 @@ export default function SiteHeader() {
     <>
       <div className="progress" aria-hidden="true" />
       <header className="head wrap">
-        <Link href="/" className="mark display ital" aria-label={`${BRAND.name}, home`}>
-          {BRAND.name}
+        <Link href="/" className="mark" aria-label={`${BRAND.name}, home`}>
+          <Image src="/brand/logo-compact.svg" width={664} height={150} alt="" priority />
         </Link>
         <nav className="nav label" aria-label="Main">
           {NAV.map((l) => (
@@ -49,8 +50,8 @@ export default function SiteHeader() {
       {open && (
         <div className="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="menu-top">
-            <Link href="/" className="mark display ital" style={{ color: "var(--paper)" }} onClick={close}>
-              {BRAND.name}
+            <Link href="/" className="mark" aria-label={`${BRAND.name}, home`} onClick={close}>
+              <Image src="/brand/logo-compact-light.svg" width={664} height={150} alt="" />
             </Link>
             <button type="button" className="menu-btn label" style={{ display: "inline-flex", color: "var(--paper)" }} onClick={close} autoFocus>
               Close
