@@ -17,6 +17,9 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+/* No visible scrollbars anywhere; everything still scrolls by wheel, touch and keyboard. */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
 body {
   margin: 0;
   background: var(--paper);
@@ -83,6 +86,22 @@ img { display: block; max-width: 100%; }
 /* WhatsApp's own green, small, so the booking shortcut is recognisable without crowding a card. */
 .wa-pill { display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 0 14px; border-radius: 999px; background: var(--whatsapp); color: var(--ink); transition: background-color 0.4s; }
 .wa-pill:hover { background: #1ebe5a; color: var(--ink); }
+/* The corner WhatsApp button: a round icon on phones, a pill with a label on wider screens. */
+.wa-fab {
+  position: fixed; z-index: 50; right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom));
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  width: 58px; height: 58px; border-radius: 999px; background: var(--whatsapp); color: var(--ink);
+  box-shadow: 0 10px 30px rgba(23, 21, 15, 0.22), 0 2px 6px rgba(23, 21, 15, 0.12);
+  transition: transform 0.5s var(--ease), opacity 0.4s, visibility 0.4s, background-color 0.4s;
+  animation: fadeUp 0.8s var(--ease) 1.2s backwards; /* backwards, so .away can still hide it afterwards */
+}
+.wa-fab:hover { background: #1ebe5a; color: var(--ink); }
+.wa-fab.away { opacity: 0; visibility: hidden; transform: translateY(16px) scale(0.9); pointer-events: none; }
+.wa-fab-text { display: none; font-size: 15px; font-weight: 600; }
+@media (min-width: 721px) {
+  .wa-fab { right: 28px; bottom: 28px; width: auto; padding: 0 22px 0 18px; }
+  .wa-fab-text { display: inline; }
+}
 
 /* ---------- header ---------- */
 .progress {
@@ -120,22 +139,22 @@ main { display: block; overflow-x: clip; }
 /* ---------- page header (inner pages) ---------- */
 .page-head {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end;
-  padding-top: clamp(64px, 9vw, 140px); padding-bottom: clamp(40px, 5vw, 72px);
+  padding-top: clamp(48px, 6vw, 96px); padding-bottom: clamp(28px, 3.5vw, 52px);
 }
 .page-head .label { grid-column: 1 / -1; color: var(--muted); }
-.page-head h1 { grid-column: 1 / span 8; margin: 0; font-size: clamp(52px, 8vw, 128px); line-height: 0.95; }
+.page-head h1 { grid-column: 1 / span 8; margin: 0; font-size: clamp(46px, 6vw, 92px); line-height: 0.95; }
 .page-head p { grid-column: 9 / span 4; margin: 0; max-width: 34ch; color: var(--muted); }
 .crumb { display: inline-flex; margin-top: calc(-1 * clamp(24px, 4vw, 60px)); color: var(--muted); }
 
 /* ---------- section headings ---------- */
-.sec { padding-top: clamp(80px, 10vw, 160px); padding-bottom: clamp(80px, 10vw, 160px); }
-.sec-tight { padding-top: clamp(56px, 7vw, 110px); padding-bottom: clamp(56px, 7vw, 110px); }
+.sec { padding-top: clamp(56px, 6vw, 104px); padding-bottom: clamp(56px, 6vw, 104px); }
+.sec-tight { padding-top: clamp(44px, 5vw, 80px); padding-bottom: clamp(44px, 5vw, 80px); }
 .sec-head {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end;
-  padding-bottom: clamp(36px, 4.5vw, 64px);
+  padding-bottom: clamp(28px, 3vw, 44px);
 }
 .sec-head .label { grid-column: 1 / -1; color: var(--muted); }
-.sec-head h2 { grid-column: 1 / span 7; margin: 0; font-size: clamp(44px, 6.4vw, 104px); line-height: 0.98; }
+.sec-head h2 { grid-column: 1 / span 7; margin: 0; font-size: clamp(38px, 4.6vw, 72px); line-height: 0.98; }
 .sec-head p { grid-column: 9 / span 4; margin: 0; max-width: 34ch; color: var(--muted); }
 .sec-head .more { grid-column: 9 / span 4; justify-self: start; }
 .dark { background: var(--ink); color: var(--paper); }
@@ -152,7 +171,7 @@ main { display: block; overflow-x: clip; }
 }
 .tenets .num { font-size: 20px; line-height: 1.4; }
 .tenets h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; letter-spacing: 0.02em; }
-.tenets-lg h3 { margin-bottom: 8px; font-size: clamp(24px, 2.2vw, 32px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.tenets-lg h3 { margin-bottom: 6px; font-size: clamp(22px, 1.8vw, 26px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
 .tenets-lg .num { font-size: 24px; }
 .plain { list-style: none; margin: 0; padding: 0; }
 .tenets p { margin: 0; color: var(--muted); font-size: 16px; }
@@ -163,19 +182,19 @@ main { display: block; overflow-x: clip; }
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px;
   border-top: 1px solid var(--rule); list-style: none; margin: 0; padding: 0;
 }
-.grid-3 > li, .grid-3 > article { padding: 28px 0 36px; border-bottom: 1px solid var(--rule); }
-.grid-3 .num { display: block; font-size: 22px; margin-bottom: 18px; }
-.grid-3 h3 { margin: 0 0 10px; font-size: clamp(24px, 2vw, 30px); line-height: 1.15; }
+.grid-3 > li, .grid-3 > article { padding: 22px 0 28px; border-bottom: 1px solid var(--rule); }
+.grid-3 .num { display: block; font-size: 20px; margin-bottom: 12px; }
+.grid-3 h3 { margin: 0 0 8px; font-size: clamp(21px, 1.6vw, 25px); line-height: 1.15; }
 .grid-3 p { margin: 0; color: var(--muted); max-width: 38ch; }
 
 /* ---------- editorial rows (services, trips, rules) ---------- */
 .rows { border-top: 1px solid var(--rule-strong); }
 .row {
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px;
-  padding: clamp(28px, 3vw, 44px) 0; border-bottom: 1px solid var(--rule);
+  padding: clamp(22px, 2.2vw, 32px) 0; border-bottom: 1px solid var(--rule);
 }
 .row .idx { grid-column: 1 / span 1; font-size: 20px; line-height: 1.3; }
-.row h3 { grid-column: 2 / span 4; margin: 0; font-size: clamp(28px, 2.8vw, 42px); line-height: 1.05; }
+.row h3 { grid-column: 2 / span 4; margin: 0; font-size: clamp(24px, 2.1vw, 32px); line-height: 1.05; }
 .row .body { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 14px; }
 .row .body p { margin: 0; color: var(--muted); }
 .dark .rows, .dark .row { border-color: rgba(239, 235, 228, 0.2); }
@@ -189,7 +208,7 @@ main { display: block; overflow-x: clip; }
 .qa details { border-bottom: 1px solid var(--rule); }
 .qa summary {
   list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 24px;
-  min-height: 72px; padding: 18px 0; cursor: pointer; font-size: clamp(19px, 1.6vw, 24px); line-height: 1.3;
+  min-height: 60px; padding: 14px 0; cursor: pointer; font-size: clamp(18px, 1.3vw, 21px); line-height: 1.3;
 }
 .qa summary::-webkit-details-marker { display: none; }
 .qa summary .sign { position: relative; width: 14px; height: 14px; flex-shrink: 0; }
@@ -273,7 +292,6 @@ textarea.inp { min-height: 120px; max-height: 420px; padding-top: 12px; resize: 
   background: #221f18; color: var(--paper);
   border: 1px solid rgba(239, 235, 228, 0.14); border-radius: 16px;
   box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6); animation: vsIn 0.28s var(--ease) both;
-  scrollbar-width: thin; scrollbar-color: rgba(239, 235, 228, 0.25) transparent;
 }
 .pop.up { top: auto; bottom: calc(100% + 10px); animation-name: vsInUp; }
 .vs-list {
@@ -388,7 +406,7 @@ p .ul:not(.wa-note):hover { color: inherit; text-decoration-thickness: 2px; }
 .form-error .ul { font-weight: 600; }
 a[href^="tel:"] { white-space: nowrap; }
 .thanks { display: flex; flex-direction: column; gap: 18px; animation: fadeUp 1s var(--ease) both; }
-.thanks h3 { margin: 0; font-size: clamp(44px, 5vw, 72px); line-height: 1; }
+.thanks h3 { margin: 0; font-size: clamp(38px, 4vw, 56px); line-height: 1; }
 .thanks p { margin: 0; color: var(--muted-on-ink); max-width: 44ch; }
 .thanks .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .ghost {
@@ -405,9 +423,45 @@ dialog.sheet {
 }
 dialog.sheet::backdrop { background: rgba(23, 21, 15, 0.55); backdrop-filter: blur(3px); }
 dialog.sheet[open] { animation: fadeUp 0.5s var(--ease) both; }
-.sheet-in { padding: clamp(24px, 4vw, 44px); display: flex; flex-direction: column; gap: 28px; }
+.sheet-in { padding: clamp(20px, 3vw, 34px); display: flex; flex-direction: column; gap: 16px; }
 .sheet-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
-.sheet-top h2 { margin: 0; font-size: clamp(34px, 4vw, 52px); line-height: 1; }
+.sheet-top h2 { margin: 0; font-size: clamp(30px, 3.2vw, 42px); line-height: 1; }
+/* The form in the dialog runs tighter than the one on the home page, so the whole
+   request fits on a laptop screen without scrolling. */
+.sheet .form { gap: 16px; }
+.sheet .inp, .sheet .pick-btn { min-height: 44px; font-size: 17px; }
+.sheet .vs-btn { min-height: 64px; padding: 8px 0; }
+.sheet .vs-btn .vs-thumb { width: 68px; }
+.sheet .vs-btn .vs-name { font-size: clamp(20px, 1.8vw, 24px); }
+.sheet .send { min-height: 56px; }
+.whens { display: contents; }
+@media (min-width: 721px) {
+  .sheet .whens { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .sheet .row2.when { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 14px; }
+}
+/* On phones the short fields pair up two to a line, so the dialog still fits one screen. */
+@media (max-width: 720px) {
+  dialog.sheet { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); border-radius: 16px; }
+  .sheet-top h2 { font-size: 28px; }
+  .sheet-top .lbl { margin-bottom: 6px; }
+  .sheet .form { gap: 12px; }
+  .sheet .field { gap: 2px; }
+  .sheet .field .label { font-size: 11px; letter-spacing: 0.1em; white-space: nowrap; }
+  .sheet .row2 { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 14px; }
+  .sheet .row2.when { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  .sheet .inp, .sheet .pick-btn { min-height: 40px; font-size: 16px; }
+  .sheet .vs-btn { min-height: 56px; padding: 6px 0; }
+  .sheet .vs-btn .vs-thumb { width: 56px; }
+  .sheet .vs-btn .vs-name { font-size: 18px; }
+  .sheet .send { min-height: 52px; }
+  .sheet .fine { font-size: 12px; }
+}
+/* Short screens (small laptops, small phones): trim the spacing a little more. */
+@media (max-height: 680px) {
+  .sheet-in { padding: 18px 20px; gap: 12px; }
+  .sheet .form { gap: 10px; }
+  .sheet-top h2 { font-size: 28px; }
+}
 .sheet-top .lbl { color: var(--muted-on-ink); margin-bottom: 8px; display: block; }
 .x {
   display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px;
@@ -416,19 +470,19 @@ dialog.sheet[open] { animation: fadeUp 0.5s var(--ease) both; }
 }
 
 /* ---------- footer ---------- */
-.foot { padding-top: clamp(72px, 8vw, 120px); padding-bottom: 28px; border-top: 1px solid var(--rule); }
+.foot { padding-top: clamp(56px, 6vw, 88px); padding-bottom: 28px; border-top: 1px solid var(--rule); }
 .foot-cols { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
 .foot-cols > div { grid-column: span 3; display: flex; flex-direction: column; gap: 4px; }
 .foot-cols .label { margin-bottom: 10px; color: var(--muted); }
 .foot-cols .ul { min-height: 32px; align-self: flex-start; }
-.dir { margin-top: clamp(56px, 6vw, 88px); display: flex; flex-direction: column; gap: 22px; }
+.dir { margin-top: clamp(40px, 4.5vw, 64px); display: flex; flex-direction: column; gap: 22px; }
 .dir-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
 .dir-row .label { grid-column: span 3; color: var(--muted); padding-top: 4px; }
 .dir-row ul { grid-column: 4 / span 9; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 14px; }
 .dir-row a { color: var(--muted); }
 .dir-row a:hover { color: var(--accent); }
 /* The full logo, with its tagline, closes every page. */
-.wordmark { display: block; width: clamp(240px, 40vw, 560px); height: auto; margin: clamp(56px, 7vw, 100px) 0 clamp(24px, 3vw, 40px); }
+.wordmark { display: block; width: clamp(220px, 30vw, 420px); height: auto; margin: clamp(40px, 5vw, 72px) 0 clamp(20px, 2.4vw, 32px); }
 .small { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--muted); padding-top: 18px; border-top: 1px solid var(--rule); }
 .small .ul { min-height: 32px; }
 

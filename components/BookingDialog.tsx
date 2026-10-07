@@ -7,7 +7,8 @@ import { getVehicle } from "@/lib/vehicles";
 import BookingForm from "./BookingForm";
 import { Close } from "./icons";
 
-export default function BookingDialog({ vehicle, onClose }: { vehicle: Car | Bike | null; onClose: () => void }) {
+// `vehicle` is the car or bike to open with; an id of "any" opens it with any available car.
+export default function BookingDialog({ vehicle, onClose }: { vehicle: Car | Bike | { id: string } | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   // The vehicle picked inside the form, remembered against the card that opened the dialog,
   // so the title follows the picker and resets when another card is opened.

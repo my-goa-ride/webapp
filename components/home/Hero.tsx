@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BRAND } from "@/lib/brand";
-import { Arrow } from "../icons";
+import ReserveLink from "../ReserveLink";
 import { sceneBack, sceneFront, sceneMid } from "./sceneMarkup";
 
 // The brand wordmark, one letter per span so each rises in turn; parts after
@@ -97,9 +97,7 @@ export default function Hero() {
             The coast, at your own <em className="ital">pace.</em>
           </h1>
           <div className="ui-cta">
-            <a className="ul label on" href="#reserve">
-              Reserve a car <Arrow />
-            </a>
+            <ReserveLink className="ul label on">Reserve a car</ReserveLink>
             <span className="label" style={{ opacity: 0.7 }}>Scroll to explore</span>
           </div>
         </div>

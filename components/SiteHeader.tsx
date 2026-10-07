@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BRAND, telHref } from "@/lib/brand";
 import { NAV } from "@/lib/content";
+import ReserveLink from "./ReserveLink";
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -39,9 +40,9 @@ export default function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link className="ul label head-cta on" href="/cars">
+        <ReserveLink className="ul label head-cta on" href="/cars" arrow={false}>
           Reserve a car
-        </Link>
+        </ReserveLink>
         <button type="button" className="menu-btn label" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="site-menu">
           Menu
         </button>
@@ -64,7 +65,7 @@ export default function SiteHeader() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/cars" className="ital" onClick={close}>Reserve a car</Link>
+            <ReserveLink href="/cars" className="ital" arrow={false} onOpen={close}>Reserve a car</ReserveLink>
           </nav>
           <div className="menu-foot label">
             <a href={telHref}>{BRAND.phone}</a>

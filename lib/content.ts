@@ -37,10 +37,10 @@ export const DOCUMENTS = [
 ];
 
 export const TAXI_SERVICES = [
-  { title: "Airport taxis", text: "Pre-book a pickup at Mopa or Dabolim. Drivers track your flight so they are waiting when you land.", perk: "Fixed fares and flight tracking." },
-  { title: "Full-day sightseeing", text: "Beaches, forts and spice plantations at your own pace, with an air-conditioned car and a driver who knows the roads.", perk: "Flexible routes, local drivers." },
-  { title: "Point to point", text: "Dinner, a beach club, or back to your resort: a direct, safe drop anywhere across North or South Goa.", perk: "Quick dispatch, late-night drops." },
-  { title: "Outstation trips", text: "Gokarna, Malvan and beyond, in a well-kept car with an experienced highway driver.", perk: "Sedans and SUVs available." },
+  { title: "Airport taxis", text: "Pre-book a pickup at Mopa or Dabolim. Drivers track your flight so they are waiting when you land.", perk: "Fixed fares and flight tracking.", image: "/images/taxis/airport.webp", alt: "Illustration of a taxi with its boot open outside the airport terminal, a plane climbing overhead" },
+  { title: "Full-day sightseeing", text: "Beaches, forts and spice plantations at your own pace, with an air-conditioned car and a driver who knows the roads.", perk: "Flexible routes, local drivers.", image: "/images/taxis/sightseeing.webp", alt: "Illustration of a car parked beside old fort walls above a palm-lined bay" },
+  { title: "Point to point", text: "Dinner, a beach club, or back to your resort: a direct, safe drop anywhere across North or South Goa.", perk: "Quick dispatch, late-night drops.", image: "/images/taxis/point-to-point.webp", alt: "Illustration of a taxi waiting on a colourful street in the old quarter of Panjim at dusk" },
+  { title: "Outstation trips", text: "Gokarna, Malvan and beyond, in a well-kept car with an experienced highway driver.", perk: "Sedans and SUVs available.", image: "/images/taxis/outstation.webp", alt: "Illustration of an SUV on a winding road through the green hills of the Western Ghats" },
 ];
 
 export const OUTSTATION = [

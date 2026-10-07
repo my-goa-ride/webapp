@@ -3,7 +3,7 @@ import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import Faqs from "@/components/Faqs";
 import Hero from "@/components/home/Hero";
-import ReserveLink from "@/components/home/ReserveLink";
+import ReserveLink from "@/components/ReserveLink";
 import { Arrow, WhatsApp } from "@/components/icons";
 import { blogPosts } from "@/lib/blogs";
 import { BRAND, STATS, telHref, whatsappUrl } from "@/lib/brand";
@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <div className="curtain" aria-hidden="true">
-        <Image src="/brand/logo-full-light.svg" width={812} height={342} alt="" priority />
+        <Image src="/brand/logo-full-light.svg" width={771} height={334} alt="" priority />
       </div>
 
       <Hero />
@@ -132,14 +132,14 @@ export default function Home() {
           <h2 className="display">
             Goa is best seen <em className="ital">slowly.</em>
           </h2>
-          <span className="label">Fig. 1 · A village road at dusk</span>
         </div>
       </section>
 
       {/* SERVICE */}
-      <section id="service" className="service sec wrap" aria-labelledby="service-title">
+      {/* The photo runs to the left edge and stretches to the text panel's height. */}
+      <section id="service" className="service" aria-labelledby="service-title">
         <div className="villa">
-          <Image src="/images/design/villa.webp" fill sizes="(max-width: 1024px) 100vw, 50vw" alt="A silver SUV waiting outside a white villa by the sea" />
+          <Image src="/images/design/handover.webp" fill sizes="(max-width: 1024px) 100vw, 50vw" alt="Car keys with a coral key tag being handed over outside a white villa, a silver SUV parked behind" />
         </div>
         <div className="svc">
           <span className="label muted rv">The Service</span>
@@ -158,7 +158,7 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="sec tone wrap" aria-labelledby="why-title">
+      <section className="sec wrap" aria-labelledby="why-title">
         <div className="sec-head">
           <span className="label rv">Why {BRAND.name}</span>
           <h2 id="why-title" className="display rv">
@@ -208,51 +208,58 @@ export default function Home() {
           </h2>
           <p className="rv">Clean, comfortable, punctual taxis with a fare agreed before you set off.</p>
         </div>
-        <div className="rows">
+        <ul className="grid-3 taxis">
           {TAXI_SERVICES.map((s, i) => (
-            <div key={s.title} className="row rv">
-              <span className="idx display ital">{listNum(i + 1)}</span>
-              <h3 className="display">{s.title}</h3>
-              <div className="body">
-                <p>{s.text}</p>
-                <span className="label muted">{s.perk}</span>
-                <a className="ul label on" style={{ alignSelf: "flex-start" }} href={whatsappUrl(`Hi ${BRAND.name}! I'd like to book: ${s.title}.`)} target="_blank" rel="noopener noreferrer">
-                  <WhatsApp /> Book on WhatsApp
-                </a>
+            <li key={s.title} className="rv">
+              <div className="taxi-ph">
+                <Image src={s.image} alt={s.alt} fill sizes="(max-width: 720px) 100vw, (max-width: 1024px) 50vw, 25vw" />
               </div>
-            </div>
+              <span className="num display ital">{listNum(i + 1)}</span>
+              <h3 className="display">{s.title}</h3>
+              <p>{s.text}</p>
+              <span className="label muted perk">{s.perk}</span>
+              <a className="ul label on" href={whatsappUrl(`Hi ${BRAND.name}! I'd like to book: ${s.title}.`)} target="_blank" rel="noopener noreferrer">
+                <WhatsApp /> Book on WhatsApp
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       {/* OUTSTATION */}
-      <section className="sec tone wrap" aria-labelledby="outstation-title">
-        <div className="split">
-          <div className="aside">
-            <div className="sticky">
-              <span className="label muted rv">Self-drive outstation</span>
-              <h2 id="outstation-title" className="display rv" style={{ marginTop: 18 }}>
-                Go beyond <em className="ital">Goa.</em>
-              </h2>
-              <p className="rv">
-                Relocating to Bangalore, a meeting in Mumbai, or the Konkan coast: take the car across the border with a plan that suits the trip.
-              </p>
-              <a className="btn rv" href={whatsappUrl(`Hi ${BRAND.name}! I'm planning an outstation trip from Goa. Can we discuss the options?`)} target="_blank" rel="noopener noreferrer">
-                Plan your journey <Arrow />
-              </a>
-            </div>
+      <section className="sec tone wrap trip-sec" aria-labelledby="outstation-title">
+        <div className="trip">
+          <div className="trip-text">
+            <span className="label muted rv">Self-drive outstation</span>
+            <h2 id="outstation-title" className="display rv">
+              Go beyond <em className="ital">Goa.</em>
+            </h2>
+            <p className="rv">
+              Relocating to Bangalore, a meeting in Mumbai, or the Konkan coast: take the car across the border with a plan that suits the trip.
+            </p>
+            <ul className="tenets tenets-lg">
+              {OUTSTATION.map((t, i) => (
+                <li key={t.title} className="rv">
+                  <span className="num display ital">{listNum(i + 1)}</span>
+                  <div>
+                    <h3 className="display">{t.title}</h3>
+                    <p>{t.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <a className="btn rv" href={whatsappUrl(`Hi ${BRAND.name}! I'm planning an outstation trip from Goa. Can we discuss the options?`)} target="_blank" rel="noopener noreferrer">
+              Plan your journey <Arrow />
+            </a>
           </div>
-          <ul className="main tenets tenets-lg">
-            {OUTSTATION.map((t, i) => (
-              <li key={t.title} className="rv">
-                <span className="num display ital">{listNum(i + 1)}</span>
-                <div>
-                  <h3 className="display">{t.title}</h3>
-                  <p>{t.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div className="trip-map rv">
+            <Image
+              src="/images/design/outstation-map.webp"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              alt="Illustrated map of India's west coast, with routes from Goa north to Pune and Mumbai and south-east to Bangalore"
+            />
+          </div>
         </div>
       </section>
 
@@ -308,16 +315,26 @@ export default function Home() {
           </h2>
           <p className="rv">Free delivery and pickup at popular locations. Tell us where you are, and we&apos;ll bring the keys.</p>
         </div>
-        <div className="places">
-          {REGIONS.map((r) => (
-            <div key={r.title} className="place-col rv">
-              <h3 className="display">{r.title}</h3>
-              <p>{r.text}</p>
-              <ul>
-                {r.places.map((p) => <li key={p}>{p}</li>)}
-              </ul>
-            </div>
-          ))}
+        <div className="deliver">
+          <div className="deliver-map rv">
+            <Image
+              src="/images/design/delivery-map.webp"
+              fill
+              sizes="(max-width: 1024px) 100vw, 30vw"
+              alt="Illustrated map of Goa with delivery pins along the beaches from north to south, and both airports and the train stations marked"
+            />
+          </div>
+          <div className="places">
+            {REGIONS.map((r) => (
+              <div key={r.title} className="place-col rv">
+                <h3 className="display">{r.title}</h3>
+                <p>{r.text}</p>
+                <ul>
+                  {r.places.map((p) => <li key={p}>{p}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -349,7 +366,7 @@ export default function Home() {
             <p className="rv">Tell us when and where. We&apos;ll confirm availability and the price on WhatsApp or by phone.</p>
           </div>
           <div className="res-form">
-            <BookingForm listen idPrefix="home" />
+            <BookingForm idPrefix="home" />
           </div>
         </div>
       </section>

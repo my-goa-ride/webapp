@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { BRAND, whatsappUrl } from "@/lib/brand";
 import { formatPrice } from "@/lib/cars";
 import { addDays, time12 } from "@/lib/dates";
@@ -35,8 +35,6 @@ const MESSAGES = {
 
 interface Props {
   defaultCarId?: string;
-  /** Home page only: follow "Reserve this car" links on the page. */
-  listen?: boolean;
   idPrefix: string;
   /** Told when the visitor picks another vehicle, so a surrounding title can follow. */
   onVehicleChange?: (id: string) => void;
@@ -44,7 +42,7 @@ interface Props {
 
 // The request is sent by a server action (published to SNS). If that fails, the
 // visitor can still send the same request as a pre-filled WhatsApp message.
-export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix, onVehicleChange }: Props) {
+export default function BookingForm({ defaultCarId = ANY_CAR, idPrefix, onVehicleChange }: Props) {
   const [carId, setCarId] = useState(defaultCarId);
   const [error, setError] = useState<{ text: string; whatsapp?: string } | null>(null);
   const [pending, setPending] = useState(false);
@@ -55,16 +53,6 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix, 
   const [fromTime, setFromTime] = useState("10:00");
   const [untilTime, setUntilTime] = useState("10:00");
   const v = useFieldErrors(MESSAGES);
-
-  useEffect(() => {
-    if (!listen) return;
-    const pick = (e: Event) => {
-      setCarId((e as CustomEvent<string>).detail);
-      setSentTo(null);
-    };
-    window.addEventListener(RESERVE_EVENT, pick);
-    return () => window.removeEventListener(RESERVE_EVENT, pick);
-  }, [listen]);
 
   const car = getVehicle(carId);
   const carName = car?.name ?? "Any available car";
@@ -146,16 +134,17 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix, 
         <VehicleSelect id={id("car")} labelId={id("car-label")} name="carId" value={carId} onChange={(v) => { setCarId(v); onVehicleChange?.(v); }} />
       </div>
 
-      <div className="field">
-        <label className="label" htmlFor={id("name")}>Your name</label>
-        <input className="inp" id={id("name")} name="name" type="text" autoComplete="name" required minLength={2} maxLength={100} placeholder="Full name" {...v.field("name", id("name"))} />
-        <FieldError id={id("name")} message={v.errors.name} />
-      </div>
-
-      <div className="field">
-        <label className="label" htmlFor={id("phone")}>Phone or WhatsApp</label>
-        <input className="inp" id={id("phone")} name="phone" type="tel" autoComplete="tel" required pattern="\+?[0-9\s\-]{10,16}" placeholder="+91 98765 43210" {...v.field("phone", id("phone"))} />
-        <FieldError id={id("phone")} message={v.errors.phone} />
+      <div className="row2">
+        <div className="field">
+          <label className="label" htmlFor={id("name")}>Your name</label>
+          <input className="inp" id={id("name")} name="name" type="text" autoComplete="name" required minLength={2} maxLength={100} placeholder="Full name" {...v.field("name", id("name"))} />
+          <FieldError id={id("name")} message={v.errors.name} />
+        </div>
+        <div className="field">
+          <label className="label" htmlFor={id("phone")}>Phone or WhatsApp</label>
+          <input className="inp" id={id("phone")} name="phone" type="tel" autoComplete="tel" required pattern="\+?[0-9\s\-]{10,16}" placeholder="+91 98765 43210" {...v.field("phone", id("phone"))} />
+          <FieldError id={id("phone")} message={v.errors.phone} />
+        </div>
       </div>
 
       <div className="hp" aria-hidden="true">
@@ -165,50 +154,53 @@ export default function BookingForm({ defaultCarId = ANY_CAR, listen, idPrefix, 
 
       <div className="row2">
         <div className="field">
-          <label className="label" htmlFor={id("where")}>Where should we bring it?</label>
-          <input className="inp" id={id("where")} name="deliverTo" type="text" required placeholder="Villa, hotel or airport" {...v.field("deliverTo", id("where"))} />
+          <label className="label" htmlFor={id("where")}>Deliver to</label>
+          <input className="inp" id={id("where")} name="deliverTo" type="text" required placeholder="Hotel or airport" {...v.field("deliverTo", id("where"))} />
           <FieldError id={id("where")} message={v.errors.deliverTo} />
         </div>
         <div className="field">
-          <label className="label" htmlFor={id("return")}>Where do we collect it?</label>
-          <input className="inp" id={id("return")} name="collectFrom" type="text" required placeholder="Same place, or elsewhere" {...v.field("collectFrom", id("return"))} />
+          <label className="label" htmlFor={id("return")}>Collect from</label>
+          <input className="inp" id={id("return")} name="collectFrom" type="text" required placeholder="Same place?" {...v.field("collectFrom", id("return"))} />
           <FieldError id={id("return")} message={v.errors.collectFrom} />
         </div>
       </div>
 
-      <div className="row2 when">
-        <div className="field">
-          <label className="label" id={id("from-label")} htmlFor={id("from")}>From</label>
-          <DateField
-            id={id("from")} labelId={id("from-label")} name="fromDate" dialogLabel="Choose the pick-up date"
-            value={fromDate} onChange={pickFrom} today={today}
-            rangeStart={fromDate} rangeEnd={untilDate}
-            quick={today ? [{ label: "Today", value: today }, { label: "Tomorrow", value: addDays(today, 1) }] : undefined}
-            invalid={!!v.errors.fromDate}
-          />
-          <FieldError id={id("from")} message={v.errors.fromDate} />
+      {/* Pick-up and return: one line each, or side by side in the booking dialog. */}
+      <div className="whens">
+        <div className="row2 when">
+          <div className="field">
+            <label className="label" id={id("from-label")} htmlFor={id("from")}>From</label>
+            <DateField
+              id={id("from")} labelId={id("from-label")} name="fromDate" dialogLabel="Choose the pick-up date"
+              value={fromDate} onChange={pickFrom} today={today}
+              rangeStart={fromDate} rangeEnd={untilDate}
+              quick={today ? [{ label: "Today", value: today }, { label: "Tomorrow", value: addDays(today, 1) }] : undefined}
+              invalid={!!v.errors.fromDate}
+            />
+            <FieldError id={id("from")} message={v.errors.fromDate} />
+          </div>
+          <div className="field">
+            <label className="label" id={id("from-time-label")} htmlFor={id("from-time")}>At</label>
+            <TimeField id={id("from-time")} labelId={id("from-time-label")} name="fromTime" dialogLabel="Pick-up time" value={fromTime} onChange={setFromTime} />
+          </div>
         </div>
-        <div className="field">
-          <label className="label" id={id("from-time-label")} htmlFor={id("from-time")}>At</label>
-          <TimeField id={id("from-time")} labelId={id("from-time-label")} name="fromTime" dialogLabel="Pick-up time" value={fromTime} onChange={setFromTime} />
-        </div>
-      </div>
 
-      <div className="row2 when">
-        <div className="field">
-          <label className="label" id={id("until-label")} htmlFor={id("until")}>Until</label>
-          <DateField
-            id={id("until")} labelId={id("until-label")} name="untilDate" dialogLabel="Choose the return date"
-            value={untilDate} onChange={pickUntil} today={today} min={fromDate || today}
-            rangeStart={fromDate} rangeEnd={untilDate}
-            quick={fromDate ? [{ label: "3 days", value: addDays(fromDate, 3) }, { label: "5 days", value: addDays(fromDate, 5) }, { label: "A week", value: addDays(fromDate, 7) }] : undefined}
-            invalid={!!v.errors.untilDate}
-          />
-          <FieldError id={id("until")} message={v.errors.untilDate} />
-        </div>
-        <div className="field">
-          <label className="label" id={id("until-time-label")} htmlFor={id("until-time")}>At</label>
-          <TimeField id={id("until-time")} labelId={id("until-time-label")} name="untilTime" dialogLabel="Return time" value={untilTime} onChange={setUntilTime} />
+        <div className="row2 when">
+          <div className="field">
+            <label className="label" id={id("until-label")} htmlFor={id("until")}>Until</label>
+            <DateField
+              id={id("until")} labelId={id("until-label")} name="untilDate" dialogLabel="Choose the return date"
+              value={untilDate} onChange={pickUntil} today={today} min={fromDate || today}
+              rangeStart={fromDate} rangeEnd={untilDate}
+              quick={fromDate ? [{ label: "3 days", value: addDays(fromDate, 3) }, { label: "5 days", value: addDays(fromDate, 5) }, { label: "A week", value: addDays(fromDate, 7) }] : undefined}
+              invalid={!!v.errors.untilDate}
+            />
+            <FieldError id={id("until")} message={v.errors.untilDate} />
+          </div>
+          <div className="field">
+            <label className="label" id={id("until-time-label")} htmlFor={id("until-time")}>At</label>
+            <TimeField id={id("until-time")} labelId={id("until-time-label")} name="untilTime" dialogLabel="Return time" value={untilTime} onChange={setUntilTime} />
+          </div>
         </div>
       </div>
 
