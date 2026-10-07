@@ -46,7 +46,7 @@ export default function TermsPage() {
             <div style={{ marginTop: "clamp(40px, 5vw, 72px)" }}>
               {TERMS.map((t, i) => (
                 <div key={t.title} id={slugify(t.title)} className="block rv">
-                  <span className="label muted">{listNum(i + 1)}</span>
+                  <span className="num display ital">{listNum(i + 1)}</span>
                   <h3 className="display">{t.title}</h3>
                   <ul className="bullets">
                     {t.items.map((x) => <li key={x}>{x}</li>)}

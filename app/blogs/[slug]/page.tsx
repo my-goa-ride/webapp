@@ -29,7 +29,7 @@ export default async function PostPage({ params }: PageProps<"/blogs/[slug]">) {
   if (!post) notFound();
 
   return (
-    <article className="page wrap" style={{ paddingBottom: "clamp(80px, 10vw, 160px)" }}>
+    <article className="page wrap page-end">
       <header className="article-head">
         <Link className="ul label crumb" href="/blogs">Back to the journal</Link>
         <span className="label muted">{post.category}</span>

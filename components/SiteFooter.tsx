@@ -65,7 +65,7 @@ export default function SiteFooter() {
         </div>
       </nav>
 
-      <Image className="wordmark" src="/brand/logo-full.svg" width={771} height={334} alt={`${BRAND.name}, self-drive car rentals`} />
+      <Image className="wordmark" src="/brand/logo-full.svg" width={500} height={484} alt={`${BRAND.name}, self-drive car rentals`} />
       <div className="small">
         <span>© {new Date().getFullYear()} {BRAND.legalName}</span>
         <a className="ul" href="#top">Back to top</a>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo, Instrument_Sans } from "next/font/google";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import ScrollTop from "@/components/ScrollTop";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import { ReserveDialog } from "@/components/ReserveLink";
 import { BRAND } from "@/lib/brand";
@@ -64,7 +65,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        <WhatsAppFab />
+        <div className="corner">
+          <ScrollTop />
+          <WhatsAppFab />
+        </div>
         <ReserveDialog />
       </body>
     </html>

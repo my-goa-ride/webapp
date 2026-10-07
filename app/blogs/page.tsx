@@ -23,7 +23,7 @@ export default function JournalPage() {
         intro="Hidden beaches, food trails and the practical side of getting around Goa by car."
       />
 
-      <div className="wrap" style={{ paddingBottom: "clamp(80px, 10vw, 160px)" }}>
+      <div className="wrap page-end">
         <Link href={`/blogs/${lead.slug}`} className="lead-post">
           <div className="ph">
             <Image src={lead.image} alt="" fill priority sizes="(max-width: 1024px) 100vw, 58vw" />

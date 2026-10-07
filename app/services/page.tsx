@@ -21,7 +21,7 @@ export default function ServicesPage() {
         italic="in the back seat."
         intro="From driving yourself to being driven, everything you need to get around Goa and beyond."
       />
-      <div className="wrap" style={{ paddingBottom: "clamp(80px, 10vw, 160px)" }}>
+      <div className="wrap page-end">
         {SERVICES.map((s, i) => (
           <section key={s.id} id={s.id} className={i % 2 ? "feature flip" : "feature"} aria-labelledby={`${s.id}-title`}>
             <div className="ph rv">

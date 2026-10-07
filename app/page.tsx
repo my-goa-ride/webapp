@@ -3,14 +3,25 @@ import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import Faqs from "@/components/Faqs";
 import Hero from "@/components/home/Hero";
+import { LicenceArt, PhotoIdArt } from "@/components/DocArt";
 import ReserveLink from "@/components/ReserveLink";
-import { Arrow, WhatsApp } from "@/components/icons";
+import { Arrow, Bus, Hotel, Palm, Pin, Plane, Train, Waves, WhatsApp } from "@/components/icons";
 import { blogPosts } from "@/lib/blogs";
-import { BRAND, STATS, telHref, whatsappUrl } from "@/lib/brand";
+import { BRAND, POLICY, STATS, telHref, whatsappUrl } from "@/lib/brand";
 import { CARS, COLLECTION, formatPrice, getCar } from "@/lib/cars";
-import { DOCUMENTS, HOME_FAQS, OUTSTATION, REGIONS, STEPS, TAXI_SERVICES, WHY_CHOOSE } from "@/lib/content";
+import { DOCUMENTS, HOME_FAQS, OUTSTATION, REGIONS, STEPS, TAXI_SERVICES, WHY_CHOOSE, type PlaceKind } from "@/lib/content";
 import { listNum, splitLast } from "@/lib/format";
 import "./home.css";
+
+// Icons for the delivery section: one above each region, and one beside each place.
+const REGION_ICONS = { waves: <Waves size={22} />, plane: <Plane size={22} />, palm: <Palm size={22} /> };
+const PLACE_ICONS: Record<PlaceKind, React.ReactNode> = {
+  pin: <Pin />,
+  airport: <Plane />,
+  station: <Train />,
+  bus: <Bus />,
+  hotel: <Hotel />,
+};
 
 const STATEMENT =
   "We keep our cars well. Each one is cleaned, checked and brought to your door, so the only thing left to decide is which road to take.";
@@ -25,7 +36,7 @@ export default function Home() {
   return (
     <>
       <div className="curtain" aria-hidden="true">
-        <Image src="/brand/logo-full-light.svg" width={771} height={334} alt="" priority />
+        <Image src="/brand/logo-full-light.svg" width={500} height={484} alt="" priority />
       </div>
 
       <Hero />
@@ -63,7 +74,7 @@ export default function Home() {
           return (
             <article key={item.carId} className={right ? "exhibit ex-right" : "exhibit"}>
               <div className="ex-top label muted">
-                <span>No. {String(i + 1).padStart(2, "0")}</span>
+                <span>No. {listNum(i + 1)}</span>
                 <span>{item.kind}</span>
               </div>
               <div
@@ -104,20 +115,24 @@ export default function Home() {
       {/* PICK-UP ESSENTIALS */}
       <section className="sec wrap" aria-labelledby="docs-title">
         <div className="docs">
-          <h2 id="docs-title" className="display rv">
-            Bring two <em className="ital">things.</em>
-          </h2>
-          <div className="list">
-            {DOCUMENTS.map((d) => (
-              <div key={d.title} className="doc rv">
-                <Image src={d.image} alt="" width={96} height={61} />
-                <p>
-                  <strong>{d.title}.</strong> <span className="muted">{d.text}</span>
-                </p>
-              </div>
-            ))}
-            <p className="note rv">Both must be originals, shown in person when the car arrives.</p>
+          <div className="docs-intro">
+            <span className="label muted rv">At pick-up</span>
+            <h2 id="docs-title" className="display rv">
+              Bring two <em className="ital">things.</em>
+            </h2>
+            <p className="muted rv">That&apos;s all the paperwork. We check them with you when the car arrives, and the keys are yours.</p>
+            <p className="note rv">Both must be originals, shown in person. The driver must be {POLICY.minAge} or older.</p>
           </div>
+          <ul className="doc-cards">
+            {DOCUMENTS.map((d, i) => (
+              <li key={d.title} className="doc-card rv">
+                <div className="doc-art">{d.art === "licence" ? <LicenceArt /> : <PhotoIdArt />}</div>
+                <span className="num display ital">{listNum(i + 1)}</span>
+                <h3 className="display">{d.title}</h3>
+                <p>{d.text}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -149,10 +164,10 @@ export default function Home() {
           <p className="muted rv">
             Your car arrives where you are, at the hour you choose, and is collected the same way. The rest of the time, it is simply yours.
           </p>
-          <ul className="tenets">
-            <li className="rv"><span className="num display ital">{listNum(1)}</span><div><h3>Delivered</h3><p>To your villa, your hotel, or the airport arrivals hall.</p></div></li>
-            <li className="rv"><span className="num display ital">{listNum(2)}</span><div><h3>Checked</h3><p>Serviced, inspected and deep-cleaned before every rental.</p></div></li>
-            <li className="rv"><span className="num display ital">{listNum(3)}</span><div><h3>Looked after</h3><p>Help on WhatsApp or by phone, 24/7, wherever the road takes you.</p></div></li>
+          <ul className="tenets tenets-lg">
+            <li className="rv"><span className="num display ital">{listNum(1)}</span><div><h3 className="display">Delivered</h3><p>To your villa, your hotel, or the airport arrivals hall.</p></div></li>
+            <li className="rv"><span className="num display ital">{listNum(2)}</span><div><h3 className="display">Checked</h3><p>Serviced, inspected and deep-cleaned before every rental.</p></div></li>
+            <li className="rv"><span className="num display ital">{listNum(3)}</span><div><h3 className="display">Looked after</h3><p>Help on WhatsApp or by phone, 24/7, wherever the road takes you.</p></div></li>
           </ul>
         </div>
       </section>
@@ -191,7 +206,7 @@ export default function Home() {
         <ol className="rows plain">
           {STEPS.map((s, i) => (
             <li key={s.title} className="row rv">
-              <span className="idx display ital">{String(i + 1).padStart(2, "0")}</span>
+              <span className="idx display ital">{listNum(i + 1)}</span>
               <h3 className="display">{s.title}</h3>
               <div className="body"><p>{s.text}</p></div>
             </li>
@@ -327,10 +342,16 @@ export default function Home() {
           <div className="places">
             {REGIONS.map((r) => (
               <div key={r.title} className="place-col rv">
+                <span className="place-badge">{REGION_ICONS[r.icon]}</span>
                 <h3 className="display">{r.title}</h3>
                 <p>{r.text}</p>
                 <ul>
-                  {r.places.map((p) => <li key={p}>{p}</li>)}
+                  {r.places.map((p) => (
+                    <li key={p.name}>
+                      {PLACE_ICONS[p.kind]}
+                      {p.name}
+                    </li>
+                  ))}
                 </ul>
               </div>
             ))}

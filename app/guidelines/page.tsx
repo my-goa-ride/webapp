@@ -36,7 +36,7 @@ export default function GuidelinesPage() {
           <div className="main">
             {RULES.map((r, i) => (
               <div key={r.title} className="block rv">
-                <span className="label muted">{listNum(i + 1)}</span>
+                <span className="num display ital">{listNum(i + 1)}</span>
                 <h3 className="display">{r.title}</h3>
                 <ul className="bullets">
                   {r.items.map((x) => <li key={x}>{x}</li>)}
@@ -58,7 +58,7 @@ export default function GuidelinesPage() {
         <div className="rows">
           {TIPS.map((t, i) => (
             <div key={t.title} className="row rv">
-              <span className="idx display ital">{String(i + 1).padStart(2, "0")}</span>
+              <span className="idx display ital">{listNum(i + 1)}</span>
               <h3 className="display">{t.title}</h3>
               <div className="body"><p>{t.text}</p></div>
             </div>

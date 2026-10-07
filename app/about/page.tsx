@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div className="split">
           <div className="aside">
             <div className="villa-sm rv">
-              <Image src="/images/design/villa.webp" alt="A silver SUV waiting outside a white villa by the sea" fill sizes="(max-width: 1024px) 100vw, 33vw" />
+              <Image src="/images/design/about-keys.webp" alt="Illustration of a key board in a sunny Goan office: car keys on coral tags, a checklist and a tyre gauge on the shelf, a white car parked outside the window" fill sizes="(max-width: 1024px) 100vw, 33vw" />
             </div>
           </div>
           <div className="main">
@@ -39,7 +39,7 @@ export default function AboutPage() {
             <div style={{ marginTop: 40 }}>
               {ABOUT_VALUES.map((v, i) => (
                 <div key={v.title} className="block rv">
-                  <span className="label muted">{listNum(i + 1)}</span>
+                  <span className="num display ital">{listNum(i + 1)}</span>
                   <h3 className="display">{v.title}</h3>
                   <p>{v.text}</p>
                 </div>

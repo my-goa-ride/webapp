@@ -7,9 +7,9 @@ import { WhatsApp } from "./icons";
 
 // The opening line of the chat, matched to the page the visitor is on.
 function greeting(path: string) {
-  if (path.startsWith("/bikes")) return `Hi ${BRAND.name}! I'd like to rent a bike.`;
+  if (path.startsWith("/bikes")) return `Hi ${BRAND.name}! I'd like to book a bike.`;
   if (path.startsWith("/services")) return `Hi ${BRAND.name}! I'd like to ask about your taxi and driver services.`;
-  if (path.startsWith("/cars") || path === "/") return `Hi ${BRAND.name}! I'd like to rent a car.`;
+  if (path.startsWith("/cars") || path === "/") return `Hi ${BRAND.name}! I'd like to book a car.`;
   return `Hi ${BRAND.name}! I have a question.`;
 }
 

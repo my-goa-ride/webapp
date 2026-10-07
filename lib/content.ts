@@ -31,9 +31,9 @@ export const STEPS = [
   { title: "Hand back the keys", text: "Return the car at the agreed point. The deposit is refunded once the car is checked for damage and challans." },
 ];
 
-export const DOCUMENTS = [
-  { image: "/images/docs/driver-license.webp", title: "A valid driving licence", text: "Your original licence, which confirms your identity and that you are allowed to drive." },
-  { image: "/images/docs/id-card.webp", title: "A second photo ID", text: "A passport, Aadhaar or Voter ID, to match against your booking details." },
+export const DOCUMENTS: { art: "licence" | "photo-id"; title: string; text: string }[] = [
+  { art: "licence", title: "A valid driving licence", text: "Your original licence, which confirms your identity and that you are allowed to drive." },
+  { art: "photo-id", title: "A second photo ID", text: "A passport, Aadhaar or Voter ID, to match against your booking details." },
 ];
 
 export const TAXI_SERVICES = [
@@ -49,11 +49,25 @@ export const OUTSTATION = [
   { title: "Multi-city", text: "A longer route across state lines, with interstate permits, paperwork and dedicated support arranged for you." },
 ];
 
+// Each place shows a small icon of its kind: a map pin unless named otherwise.
+export type PlaceKind = "pin" | "airport" | "station" | "bus" | "hotel";
+const pins = (names: string[]) => names.map((name) => ({ name, kind: "pin" as PlaceKind }));
+
 export const REGIONS = [
-  { title: "North Goa", text: "Beachside deliveries and hotel drop-offs.", places: ["Panaji", "Calangute", "Baga", "Anjuna", "Vagator", "Mapusa", "Morjim", "Arambol", "Candolim", "Sinquerim"] },
-  { title: "Airports & stations", text: "To your terminal or platform.", places: ["Mopa Airport (GOX)", "Dabolim Airport (GOI)", "Madgaon Station", "Thivim Station", "Panaji Bus Stand", "Your hotel"] },
-  { title: "South Goa", text: "Quiet drops along the southern shore.", places: ["Margao", "Palolem", "Colva", "Vasco", "Benaulim", "Cavelossim", "Agonda", "Varca", "Majorda", "Mobor"] },
-];
+  { title: "North Goa", icon: "waves", text: "Beachside deliveries and hotel drop-offs.", places: pins(["Panaji", "Calangute", "Baga", "Anjuna", "Vagator", "Mapusa", "Morjim", "Arambol", "Candolim", "Sinquerim"]) },
+  {
+    title: "Airports & stations", icon: "plane", text: "To your terminal or platform.",
+    places: [
+      { name: "Mopa Airport (GOX)", kind: "airport" },
+      { name: "Dabolim Airport (GOI)", kind: "airport" },
+      { name: "Madgaon Station", kind: "station" },
+      { name: "Thivim Station", kind: "station" },
+      { name: "Panaji Bus Stand", kind: "bus" },
+      { name: "Your hotel", kind: "hotel" },
+    ] as { name: string; kind: PlaceKind }[],
+  },
+  { title: "South Goa", icon: "palm", text: "Quiet drops along the southern shore.", places: pins(["Margao", "Palolem", "Colva", "Vasco", "Benaulim", "Cavelossim", "Agonda", "Varca", "Majorda", "Mobor"]) },
+] as const;
 
 export interface Service {
   id: string;

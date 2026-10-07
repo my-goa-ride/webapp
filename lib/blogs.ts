@@ -130,16 +130,16 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     readTime: "2 min read",
     content: `
-      <p>Planning a trip to Goa has gotten a little more complicated recently. With the opening of the new Manohar International Airport (Mopa), travelers now have two distinct entry points into the state. Choosing the right airport—and knowing how you’ll get around once you land—can make or break your vacation.</p>
+      <p>Planning a trip to Goa has gotten a little more complicated recently. With the opening of the new Manohar International Airport (Mopa), travellers now have two distinct entry points into the state. Choosing the right airport—and knowing how you’ll get around once you land—can make or break your vacation.</p>
       
       <p>Whether you are flying into the North or the South, <strong>${BRAND.name}</strong> has you covered. Here is our ultimate guide to navigating Goa's airports and avoiding the notorious taxi lines.</p>
 
       <h2>1. Dabolim Airport (GOI): Best for South & Central Goa</h2>
-      <p>Dabolim is Goa’s original international airport, located centrally near Vasco da Gama. If your itinerary involves a lot of relaxation down south or heritage walks in the center of the state, this is your best option.</p>
+      <p>Dabolim is Goa’s original international airport, located centrally near Vasco da Gama. If your itinerary involves a lot of relaxation down south or heritage walks in the centre of the state, this is your best option.</p>
       <ul>
         <li><strong>Distance to Panaji:</strong> ~30 kilometers</li>
         <li><strong>Distance to South Goa (Colva/Palolem):</strong> ~20 to 60 kilometers</li>
-        <li><strong>Best For:</strong> Travelers staying in South Goa, Vasco, Margao, or Panaji.</li>
+        <li><strong>Best For:</strong> Travellers staying in South Goa, Vasco, Margao, or Panaji.</li>
       </ul>
       <p>The taxi queues at Dabolim can be incredibly long during peak season. By booking a self-drive vehicle with <strong>${BRAND.name}</strong>, you can have your car waiting for you in the parking lot the moment you step out of the arrivals gate.</p>
 
@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
       <ul>
         <li><strong>Distance to Panaji:</strong> ~35 kilometers</li>
         <li><strong>Distance to North Goa (Arambol/Morjim/Baga):</strong> ~20 to 30 kilometers</li>
-        <li><strong>Best For:</strong> Travelers staying in Arambol, Morjim, Vagator, Anjuna, and Assagao.</li>
+        <li><strong>Best For:</strong> Travellers staying in Arambol, Morjim, Vagator, Anjuna, and Assagao.</li>
       </ul>
       <p>Because Mopa is relatively far from central transit hubs, public transport options are limited, and pre-paid taxis charge premium rates. Having <strong>${BRAND.name}</strong> deliver a premium hatchback or SUV directly to Mopa (GOX) is the smartest, most cost-effective way to start your North Goa road trip.</p>
 
@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
       
       <p>However, executing a flawless "workation" requires more than just booking an Airbnb. From power cuts to reliable transport, here is the insider’s guide to remote working in Goa, brought to you by the team at <strong>${BRAND.name}</strong>.</p>
 
-      <h2>1. Choose the Right Neighborhood for Deep Work</h2>
+      <h2>1. Choose the Right Neighbourhood for Deep Work</h2>
       <p>While Anjuna and Vagator are incredible for nightlife, they are often noisy and prone to internet fluctuations. If you are working UK or US shift timings and need to take uninterrupted Zoom calls, you need reliable infrastructure.</p>
       <ul>
         <li><strong>Santa Cruz & Bambolim:</strong> Close to the capital city of Panaji, these areas offer robust fiber-optic internet, fewer power cuts, and incredible local food without the chaotic tourist traffic.</li>
@@ -223,7 +223,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: 5,
-    title: "The Ultimate Foodie Roadmap: A Self-Drive Guide to Goa’s Hidden Flavors",
+    title: "The Ultimate Foodie Roadmap: A Self-Drive Guide to Goa’s Hidden Flavours",
     excerpt: "Ditch the tourist traps and discover authentic Goan cuisine. From secret thali spots to riverside seafood, here is how to navigate the state's best eateries with ease.",
     image: "/images/blog/goan-food-guide.webp",
     date: "April 17, 2026",
@@ -233,7 +233,7 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     readTime: "4 min read",
     content: `
-      <p>Goa is more than just sun and sand; it is a culinary paradise where Portuguese influence meets coastal spice. However, the best flavors aren't always on the main beach road. To find the hidden gems from Panjim to Palolem, you need the freedom to move at your own pace. That is where <strong>${BRAND.name}</strong> comes in—giving you the keys to explore Goa’s food scene without the hassle of overpriced taxis.</p>
+      <p>Goa is more than just sun and sand; it is a culinary paradise where Portuguese influence meets coastal spice. However, the best flavours aren't always on the main beach road. To find the hidden gems from Panjim to Palolem, you need the freedom to move at your own pace. That is where <strong>${BRAND.name}</strong> comes in—giving you the keys to explore Goa’s food scene without the hassle of overpriced taxis.</p>
 
       <h2>1. The Breakfast Club: Vinayak Family Restaurant (Assagao)</h2>
       <p>Start your morning in the trendy hills of Assagao. While the area is known for high-end boutiques, Vinayak remains a local legend for its authentic Goan fish thali and Xacuti. It’s the perfect fuel before a day of exploring.</p>
@@ -253,22 +253,22 @@ export const blogPosts: BlogPost[] = [
       <p>If you are heading south, this is a non-negotiable stop. Set against the Sal River, the ambiance is as good as the seafood. The Kingfish Peri-Peri is legendary and best enjoyed with a view of the passing trawlers.</p>
       <ul>
         <li><strong>Why go:</strong> Stunning views combined with consistent, high-quality seafood.</li>
-        <li><strong>Getting there:</strong> South Goa is beautiful but spread out. Relying on public transport means missing the scenic backroads. When you book a sedan through <strong>${BRAND.name}</strong>, the long drive to Cavelossim becomes a comfortable road trip with your favorite playlist.</li>
+        <li><strong>Getting there:</strong> South Goa is beautiful but spread out. Relying on public transport means missing the scenic backroads. When you book a sedan through <strong>${BRAND.name}</strong>, the long drive to Cavelossim becomes a comfortable road trip with your favourite playlist.</li>
       </ul>
 
       <h2>4. The Local Secret: Kokni Kanteen (Panjim)</h2>
-      <p>For those who want a 1970s Goan vibe, this spot offers incredible "Cerelac" prawns and authentic Kokni desserts. It’s a favorite for locals and savvy travelers alike.</p>
+      <p>For those who want a 1970s Goan vibe, this spot offers incredible "Cerelac" prawns and authentic Kokni desserts. It’s a favourite for locals and savvy travellers alike.</p>
       <ul>
         <li><strong>Why go:</strong> It feels like stepping back in time with food that tastes like home.</li>
         <li><strong>Note:</strong> Finding a taxi back late at night in Panjim can be tough. Having a self-drive car from <strong>${BRAND.name}</strong> ensures you aren't stranded after a heavy dinner.</li>
       </ul>
 
       <h3>Why Choose ${BRAND.name} for Your Food Trail?</h3>
-      <p>The best part of a Goan food tour is the spontaneity—stopping at a roadside <em>Gaddo</em> (food cart) for a Ros Omelette or finding a shack that isn't on Google Maps. At <strong>${BRAND.name}</strong>, we provide well-maintained, reliable vehicles that give you the autonomy to chase flavors across the state.</p>
+      <p>The best part of a Goan food tour is the spontaneity—stopping at a roadside <em>Gaddo</em> (food cart) for a Ros Omelette or finding a shack that isn't on Google Maps. At <strong>${BRAND.name}</strong>, we provide well-maintained, reliable vehicles that give you the autonomy to chase flavours across the state.</p>
       
       <p>Whether you need a rugged SUV for the ghats of South Goa or a sleek car for the North Goa party circuit, we have you covered. Our fleet is meticulously cleaned and ready for your next culinary adventure.</p>
       
-      <p><a href="/contact"><strong>Contact ${BRAND.name} today and let’s get you on the road to Goa's best flavors!</strong></a></p>
+      <p><a href="/contact"><strong>Contact ${BRAND.name} today and let’s get you on the road to Goa's best flavours!</strong></a></p>
     `
   },
   {
@@ -283,7 +283,7 @@ export const blogPosts: BlogPost[] = [
     featured: false,
     readTime: "5 min read",
     content: `
-      <p>Goa is the undisputed capital for bachelor parties in India. But when you are traveling with a group of 5-7 guys, logistics can quickly become a nightmare. Between high taxi fares and the heat, the "vibe" can take a hit. That is why <strong>${BRAND.name}</strong> specializes in group mobility—ensuring your squad stays together and stays cool.</p>
+      <p>Goa is the undisputed capital for bachelor parties in India. But when you are travelling with a group of 5-7 guys, logistics can quickly become a nightmare. Between high taxi fares and the heat, the "vibe" can take a hit. That is why <strong>${BRAND.name}</strong> specializes in group mobility—ensuring your squad stays together and stays cool.</p>
 
       <h2>Day 1: The North Goa Party Circuit (Baga & Anjuna)</h2>
       <p>Start your trip in the heart of the action. Hit <strong>Tito’s Lane</strong> in Baga or <strong>SinQ</strong> in Candolim. 
@@ -327,7 +327,7 @@ export const blogPosts: BlogPost[] = [
       <p>Drive South to <strong>Butterfly Beach</strong> or <strong>Agonda</strong>. These are the best places for couples who want to avoid the chaos of the North. The 90-minute drive from Panaji is incredibly romantic if you have the right car. Our air-conditioned sedans at <strong>${BRAND.name}</strong> ensure you arrive at the beach fresh and ready for a stroll.</p>
 
       <h2>Day 3: Heritage Strolls in Fontainhas</h2>
-      <p>Spend your morning in the colorful Latin Quarter of <strong>Fontainhas</strong>. The yellow and blue Portuguese houses are the perfect backdrop for couple photos. <strong>${BRAND.name}</strong> can collect the car at the airport, so the last stop of the trip is an easy one.</p>
+      <p>Spend your morning in the colourful Latin Quarter of <strong>Fontainhas</strong>. The yellow and blue Portuguese houses are the perfect backdrop for couple photos. <strong>${BRAND.name}</strong> can collect the car at the airport, so the last stop of the trip is an easy one.</p>
 
       <h3>Why Couples Choose ${BRAND.name}</h3>
       <ul>
@@ -363,10 +363,10 @@ export const blogPosts: BlogPost[] = [
       <h2>3. Unique Waterfront Vibes: Nerul</h2>
       <p><strong>LPK Waterfront (Love Passion Karma)</strong> is one of the most visually stunning clubs in the state. Set along the Nerul River with rock-carved statues and a historic backdrop, it offers a distinct atmosphere. Since it's tucked away from the main tourist hubs, having your own car from <strong>${BRAND.name}</strong> is the most practical way to reach it.</p>
 
-      <h2 style="color: #d32f2f;">A Note on Safety: No Drink and Drive</h2>
-      <p>At <strong>${BRAND.name}</strong>, we want you to have an unforgettable night, but your safety is our top priority. Goa has strict enforcement of traffic laws, and <strong>drinking and driving is a serious offense</strong> that can lead to heavy fines, license suspension, or worse.</p>
+      <h2>A Note on Safety: No Drink and Drive</h2>
+      <p>At <strong>${BRAND.name}</strong>, we want you to have an unforgettable night, but your safety is our top priority. Goa has strict enforcement of traffic laws, and <strong>drinking and driving is a serious offense</strong> that can lead to heavy fines, licence suspension, or worse.</p>
       <ul>
-        <li><strong>Designated Driver:</strong> If you are traveling in a group, ensure one person stays sober to handle the drive back.</li>
+        <li><strong>Designated Driver:</strong> If you are travelling in a group, ensure one person stays sober to handle the drive back.</li>
         <li><strong>Comfortable Recovery:</strong> Use your rental car as a private, air-conditioned space to relax and sober up before heading back to your villa or hotel.</li>
         <li><strong>Strict Compliance:</strong> All <strong>${BRAND.name}</strong> vehicles come with updated documents, but the responsibility of safe driving lies with you. Enjoy the music, but respect the road.</li>
       </ul>

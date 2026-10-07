@@ -31,7 +31,7 @@ export default function SiteHeader() {
       <div className="progress" aria-hidden="true" />
       <header className="head wrap">
         <Link href="/" className="mark" aria-label={`${BRAND.name}, home`}>
-          <Image src="/brand/logo-compact.svg" width={664} height={150} alt="" priority />
+          <Image src="/brand/logo-full.svg" width={500} height={484} alt="" priority />
         </Link>
         <nav className="nav label" aria-label="Main">
           {NAV.map((l) => (
@@ -52,7 +52,7 @@ export default function SiteHeader() {
         <div className="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu">
           <div className="menu-top">
             <Link href="/" className="mark" aria-label={`${BRAND.name}, home`} onClick={close}>
-              <Image src="/brand/logo-compact-light.svg" width={664} height={150} alt="" />
+              <Image src="/brand/logo-full-light.svg" width={500} height={484} alt="" />
             </Link>
             <button type="button" className="menu-btn label" style={{ display: "inline-flex", color: "var(--paper)" }} onClick={close} autoFocus>
               Close
