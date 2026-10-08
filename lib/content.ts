@@ -86,7 +86,7 @@ export const SERVICES: Service[] = [
     subtitle: "Explore Goa on your own terms",
     text: "Skip the tour buses and rigid schedules. Rent a well-kept hatchback, sedan or SUV and find the hidden beaches exactly when you want to.",
     features: ["Unlimited kilometres on select packages", "Doorstep delivery to your hotel or the airport", "Insured and sanitised fleet", "No hidden fees"],
-    image: "/images/services/self-drive.webp",
+    image: "/images/services/self-drive-art.webp",
     cta: { label: "Browse the fleet", href: "/cars" },
   },
   {
@@ -95,7 +95,7 @@ export const SERVICES: Service[] = [
     subtitle: "Arrive in style on the day",
     text: "Make a Goan wedding memorable with a chauffeur-driven premium car, decorated if you like, and a driver who is on time.",
     features: ["Chauffeur-driven premium sedans", "Optional floral decoration", "Punctual, well-turned-out drivers", "Hourly and daily hire"],
-    image: "/images/services/wedding-service.webp",
+    image: "/images/services/wedding-art.webp",
     cta: { label: "Ask about weddings", whatsapp: "I'm interested in a wedding car." },
   },
   {
@@ -104,7 +104,7 @@ export const SERVICES: Service[] = [
     subtitle: "A local guide to Goa",
     text: "North Goa's forts, South Goa's churches and the spice plantations in between, with a driver who knows the way.",
     features: ["Full-day North and South Goa tours", "Itineraries to suit you", "Knowledgeable local drivers", "Fuel and parking included"],
-    image: "/images/services/sightseeing-service.webp",
+    image: "/images/taxis/sightseeing.webp",
     cta: { label: "Plan a day out", whatsapp: "I'd like to book a sightseeing day with a driver." },
   },
   {
@@ -113,7 +113,7 @@ export const SERVICES: Service[] = [
     subtitle: "Punctual and unfussy",
     text: "Airport pickups, station drops and point-to-point transfers with experienced local drivers, at a price agreed up front.",
     features: ["Mopa (GOX) and Dabolim (GOI) transfers", "Flight tracking included", "Quick point-to-point drops", "Fixed, upfront pricing"],
-    image: "/images/services/taxi-service.webp",
+    image: "/images/taxis/airport.webp",
     cta: { label: "Book a transfer", whatsapp: "I'd like to book a taxi transfer." },
   },
   {
@@ -122,7 +122,7 @@ export const SERVICES: Service[] = [
     subtitle: "Your car, our driver",
     text: "Already have a car but want someone else at the wheel? Hire a verified, experienced driver for local or outstation travel.",
     features: ["Verified, experienced drivers", "Local and outstation", "Safe night driving", "Daily and weekly hire"],
-    image: "/images/services/driver-hire.webp",
+    image: "/images/services/driver-hire-art.webp",
     cta: { label: "Hire a driver", whatsapp: "I'd like to hire a driver." },
   },
   {
@@ -131,7 +131,7 @@ export const SERVICES: Service[] = [
     subtitle: "Beyond the state border",
     text: "Mumbai, Pune, Bangalore or the Konkan coast: outstation packages with the permits a long highway drive needs.",
     features: ["One-way drops to major cities", "Flexible round trips", "Interstate permits handled", "24/7 roadside assistance"],
-    image: "/images/services/outstation.webp",
+    image: "/images/taxis/outstation.webp",
     cta: { label: "Plan your journey", whatsapp: "I'm interested in an outstation trip from Goa." },
   },
 ];

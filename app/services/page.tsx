@@ -24,8 +24,12 @@ export default function ServicesPage() {
       <div className="wrap page-end">
         {SERVICES.map((s, i) => (
           <section key={s.id} id={s.id} className={i % 2 ? "feature flip" : "feature"} aria-labelledby={`${s.id}-title`}>
-            <div className="ph rv">
-              <Image src={s.image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" />
+            <div className={`media s${i % 6}`}>
+              <span className="deco" aria-hidden="true" />
+              <div className="ph">
+                <Image src={s.image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" />
+              </div>
+              <span className="num" aria-hidden="true">{listNum(i + 1)}</span>
             </div>
             <div className="txt">
               <span className="label muted rv">{listNum(i + 1)} · {s.subtitle}</span>
