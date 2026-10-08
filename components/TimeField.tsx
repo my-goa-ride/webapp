@@ -28,13 +28,15 @@ function ClockIcon() {
 }
 
 // A grid of half-hour slots in place of the browser's time input. Submits "HH:MM".
-export default function TimeField({ id, labelId, name, value, onChange, dialogLabel }: {
+export default function TimeField({ id, labelId, name, value, onChange, dialogLabel, note = "Handover 9 AM to 9 PM. Earlier or later on request." }: {
   id: string;
   labelId: string;
   name: string;
   value: string;
   onChange: (time: string) => void;
   dialogLabel: string;
+  /** The line under the slots. */
+  note?: string;
 }) {
   const { open, up, root, button, show: openPopover, hide } = usePopover(380);
   const [active, setActive] = useState(0);
@@ -141,7 +143,7 @@ export default function TimeField({ id, labelId, name, value, onChange, dialogLa
               </div>
             ))}
           </div>
-          <p className="times-note">Handover 9 AM to 9 PM. Earlier or later on request.</p>
+          <p className="times-note">{note}</p>
         </div>
       )}
     </div>

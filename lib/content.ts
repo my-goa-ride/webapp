@@ -1,6 +1,7 @@
 // Page copy carried over from the reference rental site, with the brand name and
 // policy figures pulled from lib/brand.ts.
 import { BIKE_POLICY, BRAND, POLICY } from "./brand";
+import { time12 } from "./dates";
 
 const B = BRAND.name;
 
@@ -28,7 +29,7 @@ export const STEPS = [
   { title: "Find your car", text: `Browse the fleet and pick the car that suits your trip, from a Swift for two to an Innova for the whole family.` },
   { title: "Send a request", text: "Choose your dates and where we should bring it. We confirm availability and share payment details." },
   { title: "Get ready to drive", text: "Ride details arrive on WhatsApp and email. Meet us at the handover, complete a quick verification, and go." },
-  { title: "Hand back the keys", text: "Return the car at the agreed point. The deposit is refunded once the car is checked for damage and challans." },
+  { title: "Hand back the keys", text: `Return the car at the agreed point by ${time12(POLICY.returnBy)} on your last day; a later return is charged for that day as well. The deposit is refunded once the car is checked for damage and challans.` },
 ];
 
 export const DOCUMENTS: { art: "licence" | "photo-id"; title: string; text: string }[] = [
@@ -213,8 +214,8 @@ export const TERMS = [
     title: "Returning the car",
     items: [
       `Handover hours are ${POLICY.handoverHours}.`,
-      "Return the car by the agreed time.",
-      `Returns after ${POLICY.lateAfter}, or after the agreed time, are charged an extra day.`,
+      `Return the car by ${time12(POLICY.returnBy)} on the last day of the booking.`,
+      `A return after ${time12(POLICY.returnBy)} is charged for that day as well.`,
     ],
   },
   {
@@ -340,7 +341,7 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
       { q: "How much is the deposit for a bike?", a: `${BIKE_POLICY.deposit}, refundable when the bike comes back undamaged with no pending fines.` },
       { q: "Are helmets included?", a: "Yes, one helmet comes free with every bike. If you're riding with a pillion, ask us about a second one when you book; the law requires both of you to wear one at all times." },
       { q: "Can two people ride the bike?", a: "Yes, a rider and one pillion, both wearing helmets. No more than two people on the bike." },
-      { q: "Do the other rental terms apply to bikes?", a: "Yes. Fuel, fines, handover hours, extensions and cancellation work the same way as for cars." },
+      { q: "Do the other rental terms apply to bikes?", a: `Yes. Fuel, fines, handover hours, extensions and cancellation work the same way as for cars, and the bike is due back by ${time12(POLICY.returnBy)} on your last day.` },
     ],
   },
   {
@@ -351,7 +352,7 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
       { q: "Can I drive on the beach?", a: "No. It's illegal in Goa and ends the rental, with fines and loss of the deposit." },
       { q: "Can I smoke or drink in the car?", a: `No. A cleaning fee of ${POLICY.cleaningFee} applies if the car comes back with smoke odour or litter.` },
       { q: "What if I have an accident?", a: `Call us straight away. Repair costs are assessed; above ${POLICY.insuranceThreshold} we may claim through insurance. The daily rental charge applies while the car is being repaired.` },
-      { q: "What are the handover hours?", a: `${POLICY.handoverHours}. Returns after ${POLICY.lateAfter} are charged an extra day.` },
+      { q: "What are the handover hours?", a: `${POLICY.handoverHours}. Return the car by ${time12(POLICY.returnBy)} on your last day; a later return is charged for that day as well.` },
     ],
   },
   {
@@ -371,6 +372,7 @@ export const HOME_FAQS: Faq[] = [
   { q: "Are there hidden charges?", a: "No. The quoted price includes standard insurance and taxes. You pay the rental, a refundable deposit and your fuel." },
   { q: "What if I scratch the car?", a: `Minor repairs come out of the deposit. Above ${POLICY.insuranceThreshold}, we may claim through insurance; the daily rental applies while the car is off the road.` },
   { q: "Can I extend my booking?", a: "Usually, if the car is free. Message us on WhatsApp before your booking ends." },
+  { q: "What time do I return the car?", a: `By ${time12(POLICY.returnBy)} on the last day of your booking. A later return is charged for that day as well.` },
 ];
 
 export const DIRECTORY = {

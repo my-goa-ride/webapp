@@ -4,13 +4,14 @@ import BikeList from "@/components/BikeList";
 import PageHead from "@/components/PageHead";
 import WhatsAppNote from "@/components/WhatsAppNote";
 import { Arrow } from "@/components/icons";
-import { BIKE_POLICY, BRAND } from "@/lib/brand";
+import { BIKE_POLICY, BRAND, POLICY } from "@/lib/brand";
+import { time12 } from "@/lib/dates";
 import { BIKES } from "@/lib/bikes";
 import { listNum } from "@/lib/format";
 
 const ESSENTIALS = [
   { title: "Licence and age", text: `A valid two-wheeler licence (MCWOG or MCWG) and a photo ID. Riders must be ${BIKE_POLICY.minAge} or older.` },
-  { title: "Deposit and minimum", text: `A minimum rental of ${BIKE_POLICY.minDays} days, and a refundable deposit of ${BIKE_POLICY.deposit} taken at handover.` },
+  { title: "Deposit and minimum", text: `A minimum rental of ${BIKE_POLICY.minDays} days, and a refundable deposit of ${BIKE_POLICY.deposit} taken at handover. Return by ${time12(POLICY.returnBy)} on the last day, or that day is charged as well.` },
   { title: "Helmets", text: "One helmet comes free with every bike. Helmets are compulsory for the rider and any pillion, so ask us if you need a second." },
 ];
 

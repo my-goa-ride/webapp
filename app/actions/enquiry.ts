@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
+import { POLICY } from "@/lib/brand";
 import { formatPrice } from "@/lib/cars";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { getVehicle } from "@/lib/vehicles";
@@ -111,7 +112,7 @@ export async function sendBookingEnquiry(form: FormData): Promise<EnquiryResult>
     `From:          ${readable(f.fromDate, f.fromTime)}`,
     "",
     `Collect from:  ${f.collectFrom}`,
-    `Until:         ${readable(f.untilDate, f.untilTime)}`,
+    `Until:         ${readable(f.untilDate, f.untilTime)}${f.untilTime > POLICY.returnBy ? " (after the return cut-off, so that day is charged)" : ""}`,
     RULE,
   ].join("\n");
 

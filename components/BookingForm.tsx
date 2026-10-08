@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
-import { BRAND, whatsappUrl } from "@/lib/brand";
+import { BRAND, POLICY, whatsappUrl } from "@/lib/brand";
 import { formatPrice } from "@/lib/cars";
 import { addDays, time12 } from "@/lib/dates";
 import { getVehicle } from "@/lib/vehicles";
@@ -51,7 +51,7 @@ export default function BookingForm({ defaultCarId = ANY_CAR, idPrefix, onVehicl
   const [fromDate, setFromDate] = useState("");
   const [untilDate, setUntilDate] = useState("");
   const [fromTime, setFromTime] = useState("10:00");
-  const [untilTime, setUntilTime] = useState("10:00");
+  const [untilTime, setUntilTime] = useState<string>(POLICY.returnBy);
   const v = useFieldErrors(MESSAGES);
 
   const car = getVehicle(carId);
@@ -105,7 +105,7 @@ export default function BookingForm({ defaultCarId = ANY_CAR, idPrefix, onVehicl
       `Deliver to: ${f.deliverTo}`,
       `Collect from: ${f.collectFrom}`,
       `From: ${readable(f.fromDate, f.fromTime)}`,
-      `Until: ${readable(f.untilDate, f.untilTime)}`,
+      `Until: ${readable(f.untilDate, f.untilTime)}${f.untilTime > POLICY.returnBy ? " (after the return cut-off, so that day is charged)" : ""}`,
     ].join("\n");
     setError({ text: result?.error ?? "We couldn't send that just now.", whatsapp: whatsappUrl(message) });
   };
@@ -199,10 +199,16 @@ export default function BookingForm({ defaultCarId = ANY_CAR, idPrefix, onVehicl
           </div>
           <div className="field">
             <label className="label" id={id("until-time-label")} htmlFor={id("until-time")}>At</label>
-            <TimeField id={id("until-time")} labelId={id("until-time-label")} name="untilTime" dialogLabel="Return time" value={untilTime} onChange={setUntilTime} />
+            <TimeField id={id("until-time")} labelId={id("until-time-label")} name="untilTime" dialogLabel="Return time" value={untilTime} onChange={setUntilTime}
+              note={`Return by ${time12(POLICY.returnBy)}; a later return is charged for that day as well.`}
+            />
           </div>
         </div>
       </div>
+
+      {untilTime > POLICY.returnBy && (
+        <p className="fine">{`Returns after ${time12(POLICY.returnBy)} are charged for the return day as well.`}</p>
+      )}
 
       {error && (
         <p className="form-error" role="alert">
