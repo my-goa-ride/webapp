@@ -21,7 +21,6 @@ export default function SiteFooter() {
           <span className="label">Contact</span>
           <a className="ul" href={telHref}>{BRAND.phone}</a>
           <a className="ul" href={`mailto:${BRAND.email}`}>{BRAND.email}</a>
-          <span>{BRAND.hours}</span>
         </div>
         <div>
           <span className="label">Explore</span>

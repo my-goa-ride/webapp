@@ -24,7 +24,6 @@ export const BRAND = {
     postalCode: "[PIN]",
     country: "IN",
   },
-  hours: "Every day, 9:00 AM to 9:00 PM",
 } as const;
 
 // Rental policy figures for cars, carried over from the reference site. Confirm with the business.
@@ -34,14 +33,13 @@ export const POLICY = {
   cleaningFee: "₹1,000",
   insuranceThreshold: "₹1,40,000",
   fullRefundDays: 7,
-  handoverHours: "9:00 AM to 9:00 PM",
   // Return by this time on the last day; a later return is charged for that day too.
   returnBy: "09:00",
   minAge: 18,
 } as const;
 
 // Where bikes differ from the car policy above; everything else (fuel, fines, cancellation,
-// handover hours, return time) follows POLICY.
+// return time) follows POLICY.
 export const BIKE_POLICY = {
   minDays: 3,
   deposit: "₹1,000",

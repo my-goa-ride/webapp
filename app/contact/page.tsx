@@ -34,10 +34,6 @@ export default function ContactPage() {
             <span>{BRAND.address.street}</span>
             <span>{BRAND.address.locality} {BRAND.address.postalCode}</span>
           </div>
-          <div>
-            <span className="label">Hours</span>
-            <span>{BRAND.hours}</span>
-          </div>
         </address>
         <div className="form-wrap">
           <ContactForm />

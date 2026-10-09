@@ -213,9 +213,8 @@ export const TERMS = [
   {
     title: "Returning the car",
     items: [
-      `Handover hours are ${POLICY.handoverHours}.`,
-      `Return the car by ${time12(POLICY.returnBy)} on the last day of the booking.`,
-      `A return after ${time12(POLICY.returnBy)} is charged for that day as well.`,
+      `Hand the car back before ${time12(POLICY.returnBy)} on the last day of the booking.`,
+      `A handover after ${time12(POLICY.returnBy)} is charged for that day as well.`,
     ],
   },
   {
@@ -341,7 +340,7 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
       { q: "How much is the deposit for a bike?", a: `${BIKE_POLICY.deposit}, refundable when the bike comes back undamaged with no pending fines.` },
       { q: "Are helmets included?", a: "Yes, one helmet comes free with every bike. If you're riding with a pillion, ask us about a second one when you book; the law requires both of you to wear one at all times." },
       { q: "Can two people ride the bike?", a: "Yes, a rider and one pillion, both wearing helmets. No more than two people on the bike." },
-      { q: "Do the other rental terms apply to bikes?", a: `Yes. Fuel, fines, handover hours, extensions and cancellation work the same way as for cars, and the bike is due back by ${time12(POLICY.returnBy)} on your last day.` },
+      { q: "Do the other rental terms apply to bikes?", a: `Yes. Fuel, fines, the return time, extensions and cancellation work the same way as for cars, and the bike is due back by ${time12(POLICY.returnBy)} on your last day.` },
     ],
   },
   {
@@ -352,7 +351,7 @@ export const FAQ_GROUPS: { id: string; title: string; items: Faq[] }[] = [
       { q: "Can I drive on the beach?", a: "No. It's illegal in Goa and ends the rental, with fines and loss of the deposit." },
       { q: "Can I smoke or drink in the car?", a: `No. A cleaning fee of ${POLICY.cleaningFee} applies if the car comes back with smoke odour or litter.` },
       { q: "What if I have an accident?", a: `Call us straight away. Repair costs are assessed; above ${POLICY.insuranceThreshold} we may claim through insurance. The daily rental charge applies while the car is being repaired.` },
-      { q: "What are the handover hours?", a: `${POLICY.handoverHours}. Return the car by ${time12(POLICY.returnBy)} on your last day; a later return is charged for that day as well.` },
+      { q: "When do I hand the car back?", a: `Before ${time12(POLICY.returnBy)} on your last day. A handover after ${time12(POLICY.returnBy)} is charged for that day as well.` },
     ],
   },
   {

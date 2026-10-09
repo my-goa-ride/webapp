@@ -15,8 +15,6 @@ const SECTIONS = [
   { label: "Late night", slots: [...range(22, 24), ...range(0, 6)] },
 ];
 const SLOTS = SECTIONS.flatMap((s) => s.slots);
-// Handovers run 9 AM to 9 PM; other times are by arrangement.
-const inHours = (t: string) => t >= "09:00" && t <= "21:00";
 
 function ClockIcon() {
   return (
@@ -28,7 +26,7 @@ function ClockIcon() {
 }
 
 // A grid of half-hour slots in place of the browser's time input. Submits "HH:MM".
-export default function TimeField({ id, labelId, name, value, onChange, dialogLabel, note = "Handover 9 AM to 9 PM. Earlier or later on request." }: {
+export default function TimeField({ id, labelId, name, value, onChange, dialogLabel, note }: {
   id: string;
   labelId: string;
   name: string;
@@ -124,7 +122,7 @@ export default function TimeField({ id, labelId, name, value, onChange, dialogLa
                 <div className="times-grid">
                   {s.slots.map((t) => {
                     const i = SLOTS.indexOf(t);
-                    const cls = ["slot", i === active && "on", !inHours(t) && "off-hours"].filter(Boolean).join(" ");
+                    const cls = ["slot", i === active && "on"].filter(Boolean).join(" ");
                     return (
                       <div
                         key={t}
@@ -143,7 +141,7 @@ export default function TimeField({ id, labelId, name, value, onChange, dialogLa
               </div>
             ))}
           </div>
-          <p className="times-note">{note}</p>
+          {note && <p className="times-note">{note}</p>}
         </div>
       )}
     </div>

@@ -404,7 +404,6 @@ textarea.inp { min-height: 120px; max-height: 420px; padding-top: 12px; resize: 
   display: grid; place-items: center; min-height: 38px; border-radius: 10px; cursor: pointer;
   font-size: 13px; font-variant-numeric: tabular-nums; white-space: nowrap; transition: background-color 0.15s, color 0.15s;
 }
-.slot.off-hours { color: var(--muted-on-ink); }
 .slot.on { background: rgba(239, 235, 228, 0.09); }
 .slot[aria-selected="true"] { background: var(--accent-light); color: var(--ink); font-weight: 600; }
 .times-note { margin: 0; padding: 10px 16px 12px; border-top: 1px solid rgba(239, 235, 228, 0.1); font-size: 12px; color: var(--muted-on-ink); }
