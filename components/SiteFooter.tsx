@@ -14,7 +14,7 @@ export default function SiteFooter() {
           <address style={{ fontStyle: "normal" }}>
             {BRAND.address.street}
             <br />
-            {BRAND.address.locality} {BRAND.address.postalCode}
+            {BRAND.address.locality}<br/> {BRAND.address.postalCode}
           </address>
         </div>
         <div>

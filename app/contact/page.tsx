@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import PageHead from "@/components/PageHead";
-import { BRAND, telHref, whatsappUrl } from "@/lib/brand";
+import { Arrow, Pin } from "@/components/icons";
+import { BRAND, directionsUrl, mapEmbedUrl, telHref, whatsappUrl } from "@/lib/brand";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -32,11 +33,31 @@ export default function ContactPage() {
           <div>
             <span className="label">Visit</span>
             <span>{BRAND.address.street}</span>
-            <span>{BRAND.address.locality} {BRAND.address.postalCode}</span>
+            <span>{BRAND.address.locality}</span>
+             <span>{BRAND.address.postalCode}</span>
           </div>
         </address>
         <div className="form-wrap">
           <ContactForm />
+        </div>
+      </section>
+      <section className="find-us wrap" aria-labelledby="find-us-title">
+        <div className="map-frame">
+          <iframe
+            src={mapEmbedUrl}
+            title={`Map showing ${BRAND.name} in ${BRAND.address.locality}`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="map-card">
+            <span className="label map-kicker"><Pin size={10} /> Find us</span>
+            <h2 id="find-us-title" className="display">Margao, <span className="ital">South Goa.</span></h2>
+            <p>{BRAND.address.street}, {BRAND.address.locality} {BRAND.address.postalCode}</p>
+            <a className="btn" href={directionsUrl} target="_blank" rel="noopener noreferrer">
+              Get directions <Arrow size={18} />
+            </a>
+          </div>
         </div>
       </section>
     </div>

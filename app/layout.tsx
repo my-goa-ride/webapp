@@ -53,6 +53,7 @@ const localBusiness = {
     postalCode: BRAND.address.postalCode,
     addressCountry: BRAND.address.country,
   },
+  geo: { "@type": "GeoCoordinates", latitude: BRAND.geo.lat, longitude: BRAND.geo.lng },
   priceRange: "₹₹",
 };
 

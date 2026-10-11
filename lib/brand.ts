@@ -9,21 +9,22 @@ export const BRAND = {
   tagline: "The coast, at your own pace.",
   description:
     "Self-drive car rental in Goa. Cleaned, checked and delivered to your villa, hotel or the airport.",
-  siteUrl: "https://www.example.com",
+  siteUrl: "https://www.mygoaride.com",
 
-  phone: "+91 00000 00000",
-  phoneHref: "+910000000000",
-  altPhone: "+91 00000 00001",
-  altPhoneHref: "+910000000001",
-  whatsapp: "910000000000", // country code + number, digits only
-  email: "hello@example.com",
+  phone: "+91 75076 64693",
+  phoneHref: "+917507664693",
+  altPhone: "+91 75076 64693",
+  altPhoneHref: "+917507664693",
+  whatsapp: "917507664693", // country code + number, digits only
+  email: "mygoaride@gmail.com",
 
   address: {
-    street: "[Street address]",
-    locality: "[Area], Goa",
-    postalCode: "[PIN]",
+    street: "EWS 61, Maruti Mandir",
+    locality: "Housing board, Margao, South Goa",
+    postalCode: "403601",
     country: "IN",
   },
+  geo: { lat: 15.277986202811343, lng: 73.98620200490994 },
 } as const;
 
 // Rental policy figures for cars, carried over from the reference site. Confirm with the business.
@@ -52,10 +53,13 @@ export function whatsappUrl(message: string) {
 
 export const telHref = `tel:${BRAND.phoneHref}`;
 
+export const mapEmbedUrl = `https://maps.google.com/maps?q=${BRAND.geo.lat},${BRAND.geo.lng}&z=16&output=embed`;
+export const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${BRAND.geo.lat},${BRAND.geo.lng}`;
+
 // The headline figures above the reviews on the home page. Keep them in line with the real numbers.
 export const STATS = [
   { value: "500+", label: "Happy bookings" },
-  { value: "10k+", label: "Happy customers" },
-  { value: "5+", label: "Years in Goa" },
+  { value: "3k+", label: "Happy customers" },
+  { value: "2+", label: "Years in Goa" },
   { value: "4.8★", label: "Average rating" },
 ];
