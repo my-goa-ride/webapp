@@ -48,8 +48,8 @@ function Thumb({ o }: { o: Option }) {
 }
 
 function Name({ name }: { name: string }) {
-  const [head, last] = splitLast(name);
-  return <>{head} <em className="ital">{last}</em></>;
+  const [head, last, tail] = splitLast(name);
+  return <>{head} <em className="ital">{last}</em>{tail && ` ${tail}`}</>;
 }
 
 function Chevron() {

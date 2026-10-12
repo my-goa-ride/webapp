@@ -8,10 +8,10 @@ import { WhatsApp } from "./icons";
 
 // "Mahindra Thar" -> Mahindra <em>Thar</em>, the design's headline treatment.
 function VehicleName({ name }: { name: string }) {
-  const [head, last] = splitLast(name);
+  const [head, last, tail] = splitLast(name);
   return (
     <>
-      {head} <em className="ital">{last}</em>
+      {head} <em className="ital">{last}</em>{tail && ` ${tail}`}
     </>
   );
 }

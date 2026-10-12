@@ -29,6 +29,11 @@ const STATEMENT =
 // The longest exhibit is drawn full width; the others in proportion to it.
 const LONGEST = Math.max(...COLLECTION.map((c) => c.lengthMm));
 
+function CarName({ name }: { name: string }) {
+  const [head, last, tail] = splitLast(name);
+  return <>{head} <em className="ital">{last}</em>{tail && ` ${tail}`}</>;
+}
+
 export default function Home() {
   const words = STATEMENT.split(" ");
   const posts = [blogPosts.find((p) => p.featured) ?? blogPosts[0], ...blogPosts.filter((p) => !p.featured).slice(0, 2)];
@@ -85,7 +90,7 @@ export default function Home() {
                 <Image src={item.art.src} width={item.art.width} height={item.art.height} alt={item.art.alt} sizes="(max-width: 720px) 100vw, 76vw" />
               </div>
               <div className="ex-grid rv">
-                <h3 className="display">{splitLast(car.name)[0]} <em className="ital">{splitLast(car.name)[1]}</em></h3>
+                <h3 className="display"><CarName name={car.name} /></h3>
                 <p className="desc muted">{item.blurb}</p>
                 <dl>
                   <dt>Seats</dt><dd>{car.seats}</dd>

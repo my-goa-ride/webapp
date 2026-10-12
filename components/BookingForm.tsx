@@ -142,7 +142,7 @@ export default function BookingForm({ defaultCarId = ANY_CAR, idPrefix, onVehicl
         </div>
         <div className="field">
           <label className="label" htmlFor={id("phone")}>Phone or WhatsApp</label>
-          <input className="inp" id={id("phone")} name="phone" type="tel" autoComplete="tel" required pattern="\+?[0-9\s\-]{10,16}" placeholder="+91 98765 43210" {...v.field("phone", id("phone"))} />
+          <input className="inp" id={id("phone")} name="phone" type="tel" autoComplete="tel" required pattern="\+?[0-9\s\-]{10,16}" placeholder="+91 00000 00000" {...v.field("phone", id("phone"))} />
           <FieldError id={id("phone")} message={v.errors.phone} />
         </div>
       </div>
