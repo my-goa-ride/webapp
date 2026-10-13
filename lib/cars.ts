@@ -70,7 +70,7 @@ export const COLLECTION = [
   {
     carId: "mahindra-thar",
     kind: "Four-wheel drive",
-    art: { src: "/images/collection/thar-new.webp", width: 1600, height: 772, alt: "Black Mahindra Thar hard top, side profile" },
+    art: { src: "/images/collection/thar.webp", width: 1600, height: 772, alt: "Black Mahindra Thar hard top, side profile" },
     lengthMm: 3985,
     blurb: "For laterite tracks, hill roads to the ghats, and the long way round to the fort.",
   },
