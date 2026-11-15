@@ -6,11 +6,13 @@ import { Arrow, WhatsApp } from "@/components/icons";
 import { BRAND, whatsappUrl } from "@/lib/brand";
 import { SERVICES } from "@/lib/content";
 import { listNum } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMeta({
+  title: "Car rental, taxis and drivers in Goa",
   description: "Self-drive cars, wedding cars, sightseeing with a driver, taxi transfers, drivers for hire and outstation trips across Goa.",
-};
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
@@ -27,7 +29,7 @@ export default function ServicesPage() {
             <div className={`media s${i % 6}`}>
               <span className="deco" aria-hidden="true" />
               <div className="ph">
-                <Image src={s.image} alt="" fill sizes="(max-width: 1024px) 100vw, 50vw" />
+                <Image src={s.image} alt={`${s.title}: ${s.subtitle}`} fill sizes="(max-width: 1024px) 100vw, 50vw" />
               </div>
               <span className="num" aria-hidden="true">{listNum(i + 1)}</span>
             </div>

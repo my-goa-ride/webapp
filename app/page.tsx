@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
@@ -11,6 +12,7 @@ import { BRAND, POLICY, STATS, telHref, whatsappUrl } from "@/lib/brand";
 import { CARS, COLLECTION, formatPrice, getCar } from "@/lib/cars";
 import { DOCUMENTS, HOME_FAQS, OUTSTATION, REGIONS, STEPS, TAXI_SERVICES, WHY_CHOOSE, type PlaceKind } from "@/lib/content";
 import { listNum, splitLast } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 import "./home.css";
 
 // Icons for the delivery section: one above each region, and one beside each place.
@@ -22,6 +24,15 @@ const PLACE_ICONS: Record<PlaceKind, React.ReactNode> = {
   bus: <Bus />,
   hotel: <Hotel />,
 };
+
+const FROM = formatPrice(Math.min(...CARS.map((c) => c.pricePerDay)));
+
+export const metadata: Metadata = pageMeta({
+  title: `Self-drive car rental in Goa, from ${FROM}/day | ${BRAND.name}`,
+  absoluteTitle: true,
+  description: `Self-drive car and bike rental in Goa from ${FROM} a day. ${CARS.length} cars, cleaned, checked and delivered to your villa, hotel, Mopa or Dabolim airport. Insurance and taxes included.`,
+  path: "/",
+});
 
 const STATEMENT =
   "We keep our cars well. Each one is cleaned, checked and brought to your door, so the only thing left to decide is which road to take.";

@@ -2,8 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BRAND, telHref } from "@/lib/brand";
 import { CARS } from "@/lib/cars";
-import { DIRECTORY } from "@/lib/content";
-import { slugify } from "@/lib/format";
+import { LOCALITIES } from "@/lib/locations";
 
 export default function SiteFooter() {
   return (
@@ -47,7 +46,7 @@ export default function SiteFooter() {
           <ul>
             {CARS.map((c) => (
               <li key={c.id}>
-                <Link href={`/cars?model=${c.id}`}>{c.name} in Goa</Link>
+                <Link href={`/cars/${c.id}`}>{c.name} in Goa</Link>
               </li>
             ))}
           </ul>
@@ -55,9 +54,9 @@ export default function SiteFooter() {
         <div className="dir-row">
           <span className="label">Car rental in</span>
           <ul>
-            {DIRECTORY.localities.map((l) => (
-              <li key={l}>
-                <Link href={`/cars?location=${slugify(l)}`}>{l}</Link>
+            {LOCALITIES.map((l) => (
+              <li key={l.slug}>
+                <Link href={`/car-rental/${l.slug}`}>{l.name}</Link>
               </li>
             ))}
           </ul>

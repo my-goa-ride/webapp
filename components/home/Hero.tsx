@@ -77,7 +77,7 @@ export default function Hero() {
       <div className="ui cyc">
         <div className="ui-top">
           <div>
-            <div className="label" style={{ opacity: 0.7, marginBottom: 10 }}>Self-drive car rental, Goa</div>
+            <h1 className="label" style={{ opacity: 0.7, margin: "0 0 10px" }}>Self-drive car rental in Goa</h1>
             <div className="caps">
               {CAPTIONS.map((c, i) => (
                 <div key={c.cls} className={`cap cyc ${c.cls}`} aria-hidden={i > 0 ? true : undefined}>
@@ -93,9 +93,9 @@ export default function Hero() {
           </div>
         </div>
         <div className="ui-bottom">
-          <h1 className="tagline display">
+          <p className="tagline display">
             The coast, at your own <em className="ital">pace.</em>
-          </h1>
+          </p>
           <div className="ui-cta">
             <ReserveLink className="ul label on">Reserve a car</ReserveLink>
             <span className="label" style={{ opacity: 0.7 }}>Scroll to explore</span>

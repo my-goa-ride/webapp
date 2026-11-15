@@ -3,11 +3,13 @@ import ContactForm from "@/components/ContactForm";
 import PageHead from "@/components/PageHead";
 import { Arrow, Pin } from "@/components/icons";
 import { BRAND, directionsUrl, mapEmbedUrl, telHref, whatsappUrl } from "@/lib/brand";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: `Get in touch with ${BRAND.name} for bookings and questions.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Contact us: car rental in Margao, Goa",
+  description: `Call, WhatsApp or email ${BRAND.name} to book a self-drive car or bike in Goa. Find us at Housing Board, Margao.`,
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

@@ -112,6 +112,7 @@ export default function FleetBrowser({ initialQuery = "" }: { initialQuery?: str
               <VehicleCard
                 key={car.id}
                 vehicle={car}
+                href={`/cars/${car.id}`}
                 number={CARS.indexOf(car) + 1}
                 specs={[["Gearbox", car.transmission], ["Seats", car.seats], ["Fuel", car.fuel]]}
                 priority={i < 3}

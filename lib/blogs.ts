@@ -407,3 +407,7 @@ export const blogPosts: BlogPost[] = [
     `
 }
 ];
+// A post's date ("April 10, 2026") as a Date, for the sitemap and structured data.
+export function postDate(p: BlogPost) {
+  return new Date(`${p.date} 12:00 GMT+0530`);
+}

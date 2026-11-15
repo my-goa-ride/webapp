@@ -6,11 +6,13 @@ import { Arrow } from "@/components/icons";
 import { BRAND } from "@/lib/brand";
 import { ABOUT_VALUES } from "@/lib/content";
 import { listNum } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About",
-  description: `The story behind ${BRAND.name} and how we look after every rental in Goa.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "About us: car rental in Margao, Goa",
+  description: `${BRAND.name} is a self-drive car and bike rental based in Margao, South Goa. Cleaned, checked cars delivered to your villa, hotel or the airport.`,
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "og": "node scripts/og-images.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-sns": "^3.1143.0",

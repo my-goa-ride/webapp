@@ -8,6 +8,7 @@ import { BIKE_POLICY, BRAND, POLICY } from "@/lib/brand";
 import { time12 } from "@/lib/dates";
 import { BIKES } from "@/lib/bikes";
 import { listNum } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 
 const ESSENTIALS = [
   { title: "Licence and age", text: `A valid two-wheeler licence (MCWOG or MCWG) and a photo ID. Riders must be ${BIKE_POLICY.minAge} or older.` },
@@ -15,10 +16,11 @@ const ESSENTIALS = [
   { title: "Helmets", text: "One helmet comes free with every bike. Helmets are compulsory for the rider and any pillion, so ask us if you need a second." },
 ];
 
-export const metadata: Metadata = {
-  title: "Bike rental",
-  description: `Rent a scooter in Goa with ${BRAND.name}. Delivered to your villa, hotel or the airport, with no hidden fees.`,
-};
+export const metadata: Metadata = pageMeta({
+  title: "Scooter and bike rental in Goa",
+  description: `Rent a scooter or bike in Goa with ${BRAND.name}. Helmet included, delivered to your villa, hotel or the airport, with no hidden fees.`,
+  path: "/bikes",
+});
 
 export default function BikesPage() {
   return (
