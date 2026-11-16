@@ -4,11 +4,13 @@ import Link from "next/link";
 import PageHead from "@/components/PageHead";
 import { Arrow } from "@/components/icons";
 import { blogPosts } from "@/lib/blogs";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Journal",
+export const metadata: Metadata = pageMeta({
+  title: "Goa travel guides and road trip tips",
   description: "Goa travel notes: hidden beaches, food trails, airport tips and road trips, with advice on getting around by car.",
-};
+  path: "/blogs",
+});
 
 export default function JournalPage() {
   const lead = blogPosts.find((p) => p.featured) ?? blogPosts[0];

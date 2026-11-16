@@ -278,3 +278,41 @@ textarea.inp-light { min-height: 140px; max-height: 420px; padding-top: 12px; re
 }
 @keyframes unfold { from { opacity: 0; scale: 0.86; } to { opacity: 1; scale: 1; } }
 @keyframes settle { from { scale: 1.18; } to { scale: 1; } }
+
+/* ---------- car pages (/cars/<id>) and area pages (/car-rental/<slug>) ---------- */
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 0 10px; padding-top: clamp(28px, 3vw, 44px); }
+.crumbs .ul { min-height: 32px; }
+.car-top { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: center; padding: clamp(20px, 2.5vw, 36px) 0 clamp(48px, 5vw, 80px); }
+.car-hero { grid-column: 1 / span 7; aspect-ratio: 16 / 10; }
+.car-info { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 18px; }
+.car-info h1 { margin: 0; font-size: clamp(38px, 4.4vw, 64px); line-height: 0.98; }
+.car-info p { margin: 0; }
+.car-info .price .display, .car-similar .price .display { font-size: 34px; line-height: 1; }
+.car-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; padding-top: 6px; }
+.car-detail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 64px; padding: clamp(40px, 4vw, 64px) 0; border-top: 1px solid var(--rule-strong); }
+.car-detail h2, .car-places h2, .car-similar h2, .place-nearby h2 { margin: 0 0 22px; font-size: clamp(28px, 2.6vw, 40px); line-height: 1; }
+.car-note { margin: 24px 0 0; font-size: 15px; }
+.facts { margin: 0; display: flex; flex-direction: column; }
+.facts > div { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; text-align: right; }
+.car-places, .car-similar { padding: clamp(40px, 4vw, 64px) 0; border-top: 1px solid var(--rule-strong); }
+ul.chips { list-style: none; margin: 0; padding: 0; }
+.car-places .chips, .place-nearby .chips { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+a.chip { display: inline-flex; align-items: center; }
+.car-link { display: flex; flex-direction: column; height: 100%; }
+.car-link .price { margin: auto 0 0; }
+.car-back { margin: 0; padding-bottom: clamp(56px, 6vw, 104px); }
+.place-intro { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.place-intro .lede { grid-column: 1 / span 6; }
+.place-intro .facts { grid-column: 8 / span 5; }
+.place-nearby p { margin: 28px 0 0; }
+@media (hover: hover) {
+  a.chip:hover { border-color: var(--ink); }
+  .car-link:hover h3 { color: var(--accent); }
+  .car h3 a:hover { color: var(--accent); }
+}
+@media (max-width: 1024px) {
+  .car-hero, .car-info, .place-intro .lede, .place-intro .facts { grid-column: 1 / -1; }
+  .car-detail { grid-template-columns: minmax(0, 1fr); }
+}

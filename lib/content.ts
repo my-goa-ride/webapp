@@ -374,6 +374,3 @@ export const HOME_FAQS: Faq[] = [
   { q: "What time do I return the car?", a: `By ${time12(POLICY.returnBy)} on the last day of your booking. A later return is charged for that day as well.` },
 ];
 
-export const DIRECTORY = {
-  localities: ["Mopa Airport", "Dabolim Airport", "Thivim", "Madgaon", "Anjuna", "Arambol", "Baga", "Benaulim", "Calangute", "Candolim", "Colva", "Dona Paula", "Mapusa", "Margao", "Miramar", "Morjim", "Palolem", "Panjim", "Porvorim", "Siolim", "Vagator", "Vasco"],
-};

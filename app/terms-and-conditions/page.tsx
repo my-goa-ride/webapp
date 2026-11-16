@@ -4,11 +4,13 @@ import PageHead from "@/components/PageHead";
 import { BRAND, telHref } from "@/lib/brand";
 import { CANCELLATION, TERMS } from "@/lib/content";
 import { listNum, slugify } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Terms & conditions",
   description: `The terms that apply to every vehicle rented from ${BRAND.name}, including the cancellation policy.`,
-};
+  path: "/terms-and-conditions",
+});
 
 export default function TermsPage() {
   return (

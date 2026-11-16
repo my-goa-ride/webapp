@@ -4,11 +4,13 @@ import PageHead from "@/components/PageHead";
 import { Arrow } from "@/components/icons";
 import { PRIVACY, RULES, TIPS } from "@/lib/content";
 import { listNum } from "@/lib/format";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Rental guidelines",
+export const metadata: Metadata = pageMeta({
+  title: "Self-drive rental guidelines for Goa",
   description: "The rules of the road for a self-drive rental in Goa: safety, where the car can go, looking after it, and practical driving tips.",
-};
+  path: "/guidelines",
+});
 
 export default function GuidelinesPage() {
   return (

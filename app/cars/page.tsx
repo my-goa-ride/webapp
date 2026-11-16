@@ -1,55 +1,46 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import FleetBrowser from "@/components/FleetBrowser";
 import PageHead from "@/components/PageHead";
 import WhatsAppNote from "@/components/WhatsAppNote";
-import { BRAND } from "@/lib/brand";
-import { CARS, getCar } from "@/lib/cars";
+import { CARS, formatPrice, getCar } from "@/lib/cars";
+import { getLocality } from "@/lib/locations";
+import { pageMeta } from "@/lib/seo";
 
-const titleCase = (s: string) => s.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+const FROM = formatPrice(Math.min(...CARS.map((c) => c.pricePerDay)));
 
-export async function generateMetadata({ searchParams }: PageProps<"/cars">): Promise<Metadata> {
-  const { model, location } = await searchParams;
-  const car = typeof model === "string" ? getCar(model) : undefined;
-  if (car) {
-    return {
-      title: `Rent a ${car.name} in Goa`,
-      description: `Rent the ${car.name} in Goa with doorstep delivery and no hidden fees. Book your self-drive ${car.name} with ${BRAND.name}.`,
-    };
-  }
-  if (typeof location === "string") {
-    const place = titleCase(location);
-    return {
-      title: `Car rental in ${place}, Goa`,
-      description: `Self-drive cars delivered in ${place}. Choose from ${CARS.length} cars with ${BRAND.name}.`,
-    };
-  }
-  return {
-    title: "The fleet",
-    description: `Browse all ${CARS.length} self-drive cars available in Goa. Insurance and taxes included, no hidden fees.`,
-  };
-}
+export const metadata: Metadata = pageMeta({
+  title: `Self-drive cars for rent in Goa, from ${FROM}/day`,
+  description: `Browse all ${CARS.length} self-drive cars for rent in Goa: hatchbacks, SUVs, 7-seaters and the Thar, from ${FROM} a day. Insurance and taxes included, no hidden fees.`,
+  path: "/cars",
+});
+
+// The old filter links (/cars?model=… and /cars?location=…) now have pages of their own.
+// Old Madgaon and Thivim links pointed at the towns' names; their pages are the stations.
+const OLD_LOCATIONS: Record<string, string> = { madgaon: "madgaon-station", thivim: "thivim-station" };
 
 export default async function CarsPage({ searchParams }: PageProps<"/cars">) {
   const { model, location } = await searchParams;
-  const car = typeof model === "string" ? getCar(model) : undefined;
-  const place = typeof location === "string" ? titleCase(location) : null;
+  if (typeof model === "string" && getCar(model)) permanentRedirect(`/cars/${model}`);
+  if (typeof location === "string") {
+    const slug = OLD_LOCATIONS[location] ?? location;
+    if (getLocality(slug)) permanentRedirect(`/car-rental/${slug}`);
+  }
 
   return (
     <div className="page">
       <PageHead
-        label={place ? `Car rental in ${place}` : `${CARS.length} cars`}
+        label={`${CARS.length} self-drive cars for rent in Goa`}
         title="The"
         italic="fleet."
         intro={
           <>
-            {place
-              ? `Every car below can be delivered to ${place}. Insurance and taxes included; no hidden fees.`
-              : "Insurance and taxes included. No hidden fees. Delivered to your villa, hotel or the airport."}
+            Insurance and taxes included. No hidden fees. Delivered to your villa, hotel or the airport.
             <WhatsAppNote noun="car" />
           </>
         }
       />
-      <FleetBrowser initialQuery={car?.name ?? ""} />
+      <FleetBrowser />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { BRAND, telHref, whatsappUrl } from "@/lib/brand";
 import type { Bike } from "@/lib/bikes";
 import { formatPrice, type Car } from "@/lib/cars";
@@ -24,11 +25,13 @@ interface Props {
   priority?: boolean;
   /** Studio shots on white: blended into the page instead of sitting in a white box. */
   cutout?: boolean;
+  /** The vehicle's own page, linked from its name. */
+  href?: string;
   onReserve: () => void;
 }
 
 // One card in the fleet grid, used for both cars and bikes.
-export default function VehicleCard({ vehicle: v, number, specs, priority, cutout, onReserve }: Props) {
+export default function VehicleCard({ vehicle: v, number, specs, priority, cutout, href, onReserve }: Props) {
   return (
     <li className="car rv">
       <div className={cutout ? "car-ph cut" : "car-ph"}>
@@ -42,7 +45,7 @@ export default function VehicleCard({ vehicle: v, number, specs, priority, cutou
         <span>No. {listNum(number)}</span>
         <span>{v.type}</span>
       </div>
-      <h3 className="display"><VehicleName name={v.name} /></h3>
+      <h3 className="display">{href ? <Link href={href}><VehicleName name={v.name} /></Link> : <VehicleName name={v.name} />}</h3>
       <dl>
         {specs.map(([label, value]) => (
           <Fragment key={label}>

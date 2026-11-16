@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
 import Faqs from "@/components/Faqs";
+import JsonLd from "@/components/JsonLd";
 import PageHead from "@/components/PageHead";
 import { BRAND, telHref, whatsappUrl } from "@/lib/brand";
 import { FAQ_GROUPS } from "@/lib/content";
+import { pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "FAQ",
-  description: "Answers about documents, delivery locations, deposits, fuel, fines and cancellations for self-drive rentals in Goa.",
-};
+export const metadata: Metadata = pageMeta({
+  title: "Car rental in Goa: frequently asked questions",
+  description: "Answers about documents, delivery locations, deposits, fuel, fines and cancellations for self-drive car and bike rentals in Goa.",
+  path: "/faq",
+});
 
 export default function FaqPage() {
   return (
     <div className="page">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_GROUPS.flatMap((g) => g.items).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+        }}
+      />
       <PageHead
         label="FAQ"
         title="Questions,"
